@@ -1,6 +1,11 @@
 import axios from 'axios'
 
-const productReducer = async (state={ items : []}, action) =>{
+const initialState = {
+    name : "Amit"
+
+}
+
+const productReducer = async (state={ initialState}, action) =>{
     if(action.type=='read'){
 
         console.log("action payload:"+action.payload)
