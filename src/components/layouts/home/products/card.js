@@ -1,15 +1,7 @@
-import React, { useEffect, useSelector } from 'react'
+import React, { useEffect } from 'react'
 import './card.css'
 
 export default function Card(props) {
-
-//  useEffect(()=>{
-
-  //  console.log({props})
-
-//  },[])
-const name = useSelector(state=>state.items );
-
 
   return (
     <div className='card border'>
@@ -17,7 +9,7 @@ const name = useSelector(state=>state.items );
 
         </div>
         <div className='card-details'>
-            <p className='card-title'>{name || 'product naame'}</p>
+            <p className='card-title'>{'product naame'}</p>
             <p className='card-description'>{props.description || 'product description'}</p>
         </div>
     </div>

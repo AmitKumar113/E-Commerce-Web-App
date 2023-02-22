@@ -15,49 +15,19 @@ function signup() {
       password : document.querySelector('[name="password"]').value
     };
     
-    // try{
-    //   const response = await fetch("http://localhost:5500/signup",{
-    //     method: 'POST',
-    //     headers: {
-    //       'content-type' : 'application/json'
-    //     },
-    //     body: JSON.stringify({ name:user.name, email:user.email, password:user.password})
-    //     //todo: save email address with all small letter
-    //   })
-    // } catch(error){
-    //   console.log({error})
-    // }
     const config = { headers: { "Content-Type": "application/json" } };
 
-  //   await axios.post('http://localhost:5500/signup',user)
-  // .then(function (response) {
-  //     // console.log(response)
-  //   console.log(response);
-  // })
-  // .catch(function (error) {
-  //   // handle error
-  //   console.log(error);
-  // })
   const { data } = await axios.post(
     `http://localhost:5500/signup`,
      user ,
     config
   );
-//  axios({
-//     method: 'post',
-//     url: 'http://localhost:5500/signup',
-//     data: user
-//   })
-//   .then(function(response){
-//       console.log({response})}
-//       );
 
       console.log({data})
     }
 
     // window.location.replace(`http://localhost:3000/login`)
 
-  
   return (
     <div className='signup-container flex-box-column border'>
       <h2>Signup</h2>
@@ -71,4 +41,4 @@ function signup() {
   )
 }
 
-export default signup
+export default signup;

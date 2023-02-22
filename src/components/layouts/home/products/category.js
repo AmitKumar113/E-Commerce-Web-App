@@ -1,24 +1,7 @@
 import React,{ useEffect, useState} from 'react'
 import Card from './card'
-import { getProductsCategoryWise } from '../../../../actions/productActions'
-import { useDispatch, useSelector } from 'react-redux'
-import { bindActionCreators } from 'redux';
-import {actionCreators} from '../../../../actions/index';
 
 export default function Category(props) {
-
-  
-  const dispatch = useDispatch();
-  const items = useSelector(state => state.items)
-  const { getProductOfCategory } = bindActionCreators(actionCreators, dispatch);
-  // getProductOfCategory()
-  // let itemList = []
-  // const [items, setItems] = useState([])
-  // let set = true;
-  // getProductsCategoryWise(props.title)
-  // itemList = JSON.parse(localStorage.getItem(`${props.title}`))
-  // setItems({itemList});
-
 
   return (
     <div className='category border-green'>
