@@ -9,7 +9,7 @@ export default function Card(props) {
 
         </div>
         <div className='card-details'>
-            <p className='card-title'>{'product naame'}</p>
+            <p className='card-title'>{props.name || 'product naame'}</p>
             <p className='card-description'>{props.description || 'product description'}</p>
         </div>
     </div>
