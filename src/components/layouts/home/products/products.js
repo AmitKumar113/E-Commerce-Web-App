@@ -9,11 +9,10 @@ export default function products() {
 
   return (
     <div>products
-        <Category title = 'electronics'/>
-        <Category title = 'groceries'/>
-        <Category title = 'furnitures'/>
-        {/* // <Category title = { CATEGORIES[0] }/> */}
-        {/* <Category/> */}
+        { CATEGORIES.map(category=>{
+          return (
+            <Category title = {category}/>
+        ) }) }
     </div>
   )
 }

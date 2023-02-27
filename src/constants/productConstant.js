@@ -2,7 +2,7 @@ export const CATEGORIES = [
     'electronics',
     'furniture',
     'groceries',
-    // 'clothes',
-    // 'home appliances',
+    'clothes',
+    'home appliances',
 ]
 
