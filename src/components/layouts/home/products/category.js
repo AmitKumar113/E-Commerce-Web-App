@@ -1,12 +1,12 @@
 import React,{ useEffect, useState} from 'react'
 import Card from './card'
 import axios from 'axios'
+import { Link } from "react-router-dom"
 
-let pros;
 export default function Category(props) {
 
   const [products, setProducts] = useState([]);
-
+  
   useEffect(()=>{
         const config = { headers: {"Content-Type": "application/json",}};
 
@@ -25,13 +25,8 @@ export default function Category(props) {
         <div className='flex-box'>
            { products.map(product =>{
                 return (
-                   <Card key={product._id} name={product.name} description={product.description}/>
+                   <Link key={product._id} to={`/product/${product._id}`}><Card product={product}/></Link>
                 )})}
-
-            {/* <Card name="Oneplus 1" description="oneplus Description 1"/> */}
-            {/* <Card name={pros[0].name} description="oneplus Description 1"/> */}
-            {/* <Card name={products[1].name || "not loaded"} description={products[1].description || "loading"}/> */}
-            {/* <Card /> */}
         </div>
     </div>
   )

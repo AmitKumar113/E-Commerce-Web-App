@@ -8,7 +8,6 @@ function SelectRoleBuyer() {
     <div className='Select-role-block border'>SelectRoleBuyer
       <Link to='/signup/buyer'><button>Signup</button></Link>
     </div>
-    {/* <p title='hi'>tooltip</p> */}
   </>
   )
 }

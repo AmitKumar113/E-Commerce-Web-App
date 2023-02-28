@@ -1,6 +1,14 @@
-.login-form > input, .signup-form > input{
+.login-form > input, .signup-form > input, .add-product-form > input{
     padding: 9px;
     width: 40vmin;
+    margin: 10px 0 0 0;
+    font-size: 1em;
+}
+
+textarea{
+    padding: 9px;
+    width: 40vmin;
+    height: 40vmin;
     margin: 10px 0 0 0;
     font-size: 1em;
 }
