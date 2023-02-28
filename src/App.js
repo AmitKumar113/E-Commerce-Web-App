@@ -1,6 +1,6 @@
 import './App.css';
-import Navbar from './components/layouts/Navbar';
-import SelectRole from './components/layouts/selectRole';
+import Navbar from './components/layouts/component/Navbar';
+import SelectRole from './components/layouts/component/selectRole';
 import Signup from './components/layouts/auth/signup'
 import Login from './components/layouts/auth/login'
 import Home from './components/layouts/home/Home'
