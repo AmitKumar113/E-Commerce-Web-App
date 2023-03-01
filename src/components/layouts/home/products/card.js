@@ -2,8 +2,8 @@ import React, { useEffect } from 'react'
 import './card.css'
 
 export default function Card(props) {
-  console.log(props.product.name)
-  const {name, price, description , rating} = props.product
+  // console.log(props.product.name)
+    const {name, price, description , rating} = props.product
   return (
     <div className='card border'>
         <div className='card-image border-red'>

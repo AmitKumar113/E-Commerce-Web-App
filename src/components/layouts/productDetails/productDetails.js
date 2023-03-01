@@ -1,28 +1,44 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
+import { getProduct } from '../../../Actions/productActions'
+import { useDispatch, useSelector } from 'react-redux'
+import { store } from '../../../store'
+import { useParams } from 'react-router-dom'
 
-const ProductDetails = ( {match} ) =>{
+const ProductDetails = () =>{
   
-    console.log("match : " + match)
+    const { id } = useParams()
     const [product, setProduct] = useState({});
+    const allProducts = useSelector(state => state.allProducts)
+    // const dispatch = useDispatch()
+
+    // console.log("id" + id)
+    // const dispatch = useDispatch()
+    // console.log({product})
     
     useEffect(()=>{
-        const config = { headers: {"Content-Type": "application/json",}};
+        // setProduct(pro)
+        // const getProductThunk = dispatch(getProduct)
+        // dispatch(getProductThunk)
+        // console.log({product})
+        // store.dispatch(getProduct(id)) //dispatch is not defined & promise error 
 
-        axios.get(
-          `http://localhost:5500/${match.params.id}`,
-          config
-        ).then(({data})=>{
-            console.log({data})
-            setProduct(data.product);
-        })
+        for(let i=0; i<allProducts.length; i++){
+            for(let j=0; j<allProducts[i].length; j++){
+                if(allProducts[i][j]._id == id){
+                    setProduct(allProducts[i][j])
+                    break;
+                }
+            }
+        }
+
     },[])
 
     return (
         <>
     <div>productDetails</div>
-        <h1>{product.name}</h1>
-        <h2>{product.description}</h2>
+        <h1>{product.name || "no name"}</h1>
+        <h2>{product.description || "NO description"}</h2>
         </>
 
   )
