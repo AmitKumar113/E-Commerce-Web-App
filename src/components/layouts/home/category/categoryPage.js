@@ -12,15 +12,13 @@ export default function CategoryPage() {
         if(CATEGORIES[i]==category)
             break;
     }
-    // CATEGORIES.map((categ)=>{
-    //     if(CA)
-    // })
     const allCategoryProducts = useSelector(state => state.allProducts[i])
     console.log(allCategoryProducts)
   
     return (
     <>
-    <div>categoryPage</div>
+    <div >categoryPage</div>
+    <div className='flex mx-20'>
     {
         allCategoryProducts.map(product =>  {
             return (
@@ -30,6 +28,7 @@ export default function CategoryPage() {
         } )
 
     }
+    </div>
     </>
   )
 }

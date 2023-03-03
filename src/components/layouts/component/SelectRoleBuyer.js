@@ -6,7 +6,7 @@ function SelectRoleBuyer() {
   return (
   <>
     <div className='Select-role-block border'>SelectRoleBuyer
-      <Link to='/signup/buyer'><button>Signup</button></Link>
+      <Link to='/signup/buyer'><div>Signup</div></Link>
     </div>
   </>
   )

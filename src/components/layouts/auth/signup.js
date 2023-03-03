@@ -11,7 +11,7 @@ function signup() {
 
     let user = {
       name : document.querySelector('[name="name"]').value,
-      email : document.querySelector('[name="email"]').value,
+      email : document.querySelector('[name="email"]').value.toLowerCase(),
       password : document.querySelector('[name="password"]').value
     };
     
@@ -24,20 +24,23 @@ function signup() {
   );
 
       console.log({data})
+      // history.go(-1)
+      window.location.replace(`/login`)
     }
 
-    // window.location.replace(`http://localhost:3000/login`)
 
   return (
-    <div className='signup-container flex-box-column border'>
-      <h2>Signup</h2>
-    <form className='signup-form flex-box-column' onSubmit={handleSubmit}>
-        <input placeholder='Full Name' name="name"></input>
-        <input placeholder='Email' name="email"></input>
-        <input placeholder='Password' name="password"></input>
-        <button type='submit' className='btn'>Signup</button>
-    </form>
+    <div className='h-[80vh] flex justify-center items-center'>
+      <div className='login-container flex flex-col w-1/3 h-3/4 pt-4 bg-slate-300'>
+      <span className='text-center text-3xl py-8'>Signup</span>
+        <form className='signup-form flex-box-column' onSubmit={handleSubmit}>
+            <input placeholder='Full Name' name="name"></input>
+            <input placeholder='Email' name="email"></input>
+            <input placeholder='Password' name="password"></input>
+            <button type='submit' className='btn py-4 px-12 bg-green-600 my-8'>Signup</button>
+      </form>
       </div>
+    </div>
   )
 }
 

@@ -31,10 +31,13 @@ export default function Category(props) {
     // },[])
     // const products = props.categoryProducts
   return (
-    <div className='category border-green'>
-        {props.title || 'title'}
+    <div className='category pb-12'>
+      <div className='flex justify-between py-2 px-6 mx-4'>
+        <span className='text-2xl px-8'> {props.title.toUpperCase() || 'title'} </span>
+          <Link to={`/product/${props.title}`} className="px-2 inline-block text-gray-600"><span>view more</span></Link>
+      </div>
        
-        <div className='flex-box'>
+        <div className='flex justify-center'>
            { 
              props.categoryProducts.map((product, i=0) =>{
               i++;
@@ -45,7 +48,6 @@ export default function Category(props) {
              )})
           } 
         </div>
-           <Link to={`/product/${props.title}`}>view more</Link>
     </div>
   )
 }

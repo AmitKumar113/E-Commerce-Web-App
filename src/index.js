@@ -6,8 +6,10 @@ import reportWebVitals from './reportWebVitals';
 import { store } from './store';
 import { Provider } from 'react-redux';
 import { getAllProducts } from './Actions/productActions'
+import { setUserByAuthtoken } from './Actions/userActions'
 
 store.dispatch(getAllProducts)
+store.dispatch(setUserByAuthtoken)
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

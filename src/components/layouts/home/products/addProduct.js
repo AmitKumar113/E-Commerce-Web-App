@@ -28,17 +28,17 @@ export default function addProduct() {
         // console.log(data.product)
   }
 
-
-
   return (<>
-    <div>addProduct</div>
-    <form className='add-product-form flex-box-column' onSubmit={handleAddProduct}>
+    <div className=' flex justify-center items-center'>
+      <div className='login-container flex flex-col w-1/3 h-3/4 py-4 bg-slate-300 my-8 '>
+        <span  className='text-center text-3xl py-8'>Add Product</span>
+        <form className='flex-box-column [&>*]:w-2/3 [&>*]:h-12 [&>*]:my-1 [&>*]:px-6' onSubmit={handleAddProduct}>
         <input type="text" name="product-name" placeholder="Title of product"></input>
         <input type="number" name="product-price" placeholder="Selling Price"></input>
         {/* <label for="product-image">Product image</label>
         <input type="file" name="product-image"></input> */}
         {/* <label for="product-category"></label> */}
-        <select name='product-category'>
+        <select name='product-category' className='w-1/2'>
                 <option value="SELECT">SELECT</option>
 
             { CATEGORIES.map((category=>{
@@ -47,10 +47,11 @@ export default function addProduct() {
                 )
             })) }
         </select>
-
         <textarea placeholder="Product Desription" name="product-description"></textarea>
-        <button className='btn' type='submit'>Add Product</button>
-    </form>
+        <button className='btn py-4 px-12 bg-green-600 my-8' type='submit'>Add Product</button>
+      </form>
+    </div>
+  </div>
   </>
   )
 }

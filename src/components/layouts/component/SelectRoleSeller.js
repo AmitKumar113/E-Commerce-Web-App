@@ -6,7 +6,7 @@ import {Link} from "react-router-dom"
 function SelectRoleSeller() {
   return (
     <div className='Select-role-block border'>SelectRoleSeller
-      <Link to='/signup/seller'><button>Signup</button></Link>
+      <Link to='/signup/seller'><div>Signup</div></Link>
     </div>
   )
 }

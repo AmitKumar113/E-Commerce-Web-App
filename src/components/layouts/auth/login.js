@@ -1,43 +1,44 @@
 import React from 'react'
 import axios from "axios"
 import './form.css'
+import { getUser } from '../../../Actions/userActions'
+import { useDispatch } from 'react-redux/es/exports'
 
-export default function login() {
+export default function Login({ history }) {
 
-  const handleLogin = async (e) => {
+  const dispatch = useDispatch()
+
+  const HandleLogin = (e) => {
     e.preventDefault()
-
+    console.log("first")
     let user = {
-      email: document.querySelector('[name="email"]').value,
+      email: document.querySelector('[name="email"]').value.toLowerCase(),
       password: document.querySelector('[name="password"]').value
     };
 
-    const config = { headers: { "Content-Type": "application/json" } };
+    dispatch(getUser(user))
+    // window.location.href = '/'
+    // e.target.reset()
+    // history.push("/signup")
+    // history.go(-1)
+    // window.location.replace(`/electronincs`)
 
-    const { data } = await axios.post(
-      `http://localhost:5500/login`,
-      user,
-      config
-    );
-
-    localStorage.setItem("auth-token",data.authtoken)
-
-    window.open('/',"_self")
-    console.log(data.authtoken)
   }
 
 
   return (
-    <div className='login-container flex-box-column border'>
-      <h2>login</h2>
+    <div className='h-[80vh] flex justify-center items-center'>
+      <div className='login-container flex flex-col w-1/3 h-3/4 pt-4 bg-slate-300'>
 
-      <form className='login-form flex-box-column' onSubmit={handleLogin}>
-        <input placeholder='Email' name="email"></input>
-        <input placeholder='Password' name="password"></input>
-        <button type='submit' className='btn' >Login</button>
+      <span className='text-center text-3xl py-8'>Login</span>
 
+      <form className='login-form flex-box-column' onSubmit={HandleLogin}>
+          <input placeholder='Email' name="email"></input>
+          <input placeholder='Password' name="password"></input>
+          <button type='submit' className='btn py-4 px-12 bg-green-600 my-8' >Login</button>
       </form>
 
+      </div>
     </div>
   )
 }

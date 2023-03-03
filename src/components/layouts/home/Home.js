@@ -4,37 +4,37 @@ import Products from './products/products'
 
 export default function Home() {
 
-  useEffect(() => {
+  // useEffect(() => {
 
-    const funct = async () => {
+  //   const funct = async () => {
 
-      console.log("fnc called")
-      const authToken = localStorage.getItem('auth-token')
-      console.log(authToken)
-      if (authToken) {
+  //     console.log("fnc called")
+  //     const authToken = localStorage.getItem('auth-token')
+  //     console.log(authToken)
+  //     if (authToken) {
 
-        const config = {
-          headers: {
-            "Content-Type": "application/json",
-            "auth-token": authToken
-          }
-        };
+  //       const config = {
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //           "auth-token": authToken
+  //         }
+  //       };
 
-        const { data } = await axios.get(
-          `http://localhost:5500/user`,
-          config
-        );
+  //       const { data } = await axios.get(
+  //         `http://localhost:5500/user`,
+  //         config
+  //       );
 
-        console.log(data.user.id)
-        console.log({data})
+  //       console.log(data.user.id)
+  //       console.log({data})
 
-      }
+  //     }
 
-    }
+  //   }
 
-    funct();
-  }
-    , []);
+  //   funct();
+  // }
+  //   , []);
 
   return (
     <div>
