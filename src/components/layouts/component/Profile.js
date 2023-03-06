@@ -11,7 +11,6 @@ export default function Profile() {
     <>
     <div>
       <div>Profile</div>
-      
       <div>{user.name}</div>  
     </div>
     </>

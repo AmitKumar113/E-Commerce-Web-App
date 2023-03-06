@@ -19,13 +19,17 @@ export const addToCart = (productId) => async(dispatch) =>{
             quantity : 1
         }
         
+
         const cartItems = JSON.parse(localStorage.getItem('cart-items')) || []
+        let cartSubTotal = JSON.parse(localStorage.getItem('cart-subtotal')) || 0
         cartItems.push(item);
+        cartSubTotal = cartSubTotal + data.product.price;
         localStorage.setItem('cart-items', JSON.stringify(cartItems))
+        localStorage.setItem('cart-subtotal', JSON.stringify(cartSubTotal))
 
         dispatch({
             type: 'ADD_TO_CART',
-            payload : cartItems
+            payload : {cartSubTotal, cartItems}
         })
 }
 
@@ -34,16 +38,23 @@ export const updateQuantityOfItem = ({id, updatedQty}) => async(dispatch) =>{
     console.log("product id :" +  id)
 
     const cartItems = JSON.parse(localStorage.getItem('cart-items')) || []
+    let cartSubTotal = JSON.parse(localStorage.getItem('cart-subtotal')) || 0
+
     cartItems.map( item => {
-        if(item.id == id)
+        if(item.id == id){
+            if(item.quantity < updatedQty){
+                cartSubTotal = cartSubTotal + item.price
+            }else  cartSubTotal = cartSubTotal - item.price
             item.quantity = updatedQty
+        }
     })
         
     localStorage.setItem('cart-items', JSON.stringify(cartItems))
+    localStorage.setItem('cart-subtotal', JSON.stringify(cartSubTotal))
 
         dispatch({
             type: 'UPDATE_QUANTITY',
-            payload : cartItems
+            payload : {cartSubTotal, cartItems}
         })
 }
 
@@ -51,16 +62,21 @@ export const removeItem = (id) => async(dispatch) =>{
     console.log("removeitem")
     console.log("product id :" +  id)
 
-    const cartItems = JSON.parse(localStorage.getItem('cart-items')) || []
+    let cartItems = JSON.parse(localStorage.getItem('cart-items')) || []
+    let cartSubTotal = JSON.parse(localStorage.getItem('cart-subtotal')) || 0
+
     let newCartItems = cartItems.filter( item => {
         if(item.id != id)
             return item
+            cartSubTotal = cartSubTotal - item.price * item.quantity
     })
         
     localStorage.setItem('cart-items', JSON.stringify(newCartItems))
+    localStorage.setItem('cart-subtotal', JSON.stringify(cartSubTotal))
+    cartItems = newCartItems
 
         dispatch({
             type: 'DELETE_ITEM',
-            payload : newCartItems
+            payload : {cartSubTotal, cartItems}
         })
 }

@@ -24,6 +24,10 @@ export default function Navbar() {
         ele.classList.toggle('hidden')
     }
 
+    const showPopup =()=>{
+        document.querySelector('#logout-confirmation').classList.toggle('hidden')
+    } 
+
   return (
     <header>
         <div className='navbar-container border-green flex-box' >
@@ -61,14 +65,30 @@ export default function Navbar() {
                                 <img src={personIcon} alt="image"></img>
                             </div>
                         </li></Link>
-                    <li className='hover:bg-blue-400 py-2 flex' onClick={()=>{dispatch(logoutUser)}}>
+                    <li className='hover:bg-blue-400 py-2 flex' onClick={()=>showPopup()}>
+                    {/* <li className='hover:bg-blue-400 py-2 flex' onClick={()=>{dispatch(logoutUser)}}> */}
+                            
                             <span className='w-2/3'>log out</span>
                             <div className='w-1/3 text-center'>
                                 <img src={logoutIcon} alt="image"></img>
                             </div>
                     </li>
                 </ul>
-         </div>  
+            </div> 
+                <div id='logout-confirmation'  className='hidden border fixed top-0 left-0 w-screen h-screen'>
+                    <div onClick={()=>showPopup()} className='flex justify-center items-center fixed top-0 left-0 w-screen h-screen bg-slate-900 opacity-70 z-1'>
+                    </div> 
+                            <div className='bg-white border-2  fixed  border-black w-1/3 h-1/3 z-2 top-1/2 left-1/2 transform translate-x-[-50%] translate-y-[-50%]'>
+                                <div className='text-black text-2xl'>
+                                    are you sure?
+                                </div>
+                                <div>
+                                    <div className='cursor-pointer' onClick={()=>{showPopup(); dispatch(logoutUser) }}>yes</div>
+                                    <div className='cursor-pointer' onClick={()=>showPopup()}>no</div>
+                                </div>
+                            </div>
+                </div>
+          
         </div>
     </header>
   )

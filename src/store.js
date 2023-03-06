@@ -5,7 +5,10 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 const composedEnhancer = composeWithDevTools(applyMiddleware(thunk))
 
 const initialState = {
-    cart : JSON.parse(localStorage.getItem('cart-items')) || []
+    cart : {
+       cartSubTotal :  JSON.parse(localStorage.getItem('cart-subtotal')) || 0,
+       cartItems : JSON.parse(localStorage.getItem('cart-items')) || []
+    }
 }
 
 export const store = createStore(rootReducer, initialState,composedEnhancer);
