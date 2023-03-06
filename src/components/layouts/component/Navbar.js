@@ -4,6 +4,9 @@ import '../../../style.css'
 import {Link} from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux/es/exports';
 import { logoutUser } from '../../../Actions/userActions';
+import cartIcon from '../../../images/icons/cart-icon.svg'
+import logoutIcon from '../../../images/icons/logout-icon.svg'
+import personIcon from '../../../images/icons/person-icon.svg'
 
 export default function Navbar() {
 
@@ -35,9 +38,12 @@ export default function Navbar() {
                     <Link to='/about'  className='navbar-btn border-red'>About</Link>
                     <Link to='/contactus'  className='navbar-btn border-red'>Contact Us</Link>
             </ul>
-            </div>{user.name!=undefined ? (
-            <div id='profile-name' className='px-4 cursor-pointer' onClick={showProfileToggle}>
+            </div>{user.name!=undefined ? (<div className='flex px-4 cursor-pointer'> 
+    
+            <Link to="/cart"><div className='hover:bg-sky-500'><img src={cartIcon} alt="image"></img></div>  </Link> 
+            <div id='profile-name' className='px-4 hover:bg-sky-500' onClick={showProfileToggle}>
                 {user.name}
+            </div>
             </div>
             ) : (
                 <div className='last-nav border-green flex-box' >
@@ -46,11 +52,21 @@ export default function Navbar() {
                 </div>
             )
             }
-          <div id='popup' className='absolute top-10 right-2 border-2 border-teal-300 hidden w-32'>
-                <ul className='text-center py-4 cursor-pointer'>
-                    <Link to='/profile'><li className=''>profile</li></Link>
-                    <li onClick={()=>{dispatch(logoutUser)}}>log out</li>
-                    {/* <li>log out</li> */}
+          <div id='popup' className='absolute top-10 right-2 border-2 border-teal-300 hidden w-40 bg-white m-0'>
+                <ul className='text-center cursor-pointer'>
+                    <Link to='/profile'>
+                        <li className='hover:bg-blue-400 py-2 flex'>
+                        <span className='w-2/3'>Profile</span>    
+                            <div className='w-1/3 text-center'>
+                                <img src={personIcon} alt="image"></img>
+                            </div>
+                        </li></Link>
+                    <li className='hover:bg-blue-400 py-2 flex' onClick={()=>{dispatch(logoutUser)}}>
+                            <span className='w-2/3'>log out</span>
+                            <div className='w-1/3 text-center'>
+                                <img src={logoutIcon} alt="image"></img>
+                            </div>
+                    </li>
                 </ul>
          </div>  
         </div>

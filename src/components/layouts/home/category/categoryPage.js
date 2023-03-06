@@ -12,23 +12,26 @@ export default function CategoryPage() {
         if(CATEGORIES[i]==category)
             break;
     }
+
     const allCategoryProducts = useSelector(state => state.allProducts[i])
-    console.log(allCategoryProducts)
+    // console.log(allCategoryProducts)
   
     return (
-    <>
+    <div>
     <div >categoryPage</div>
-    <div className='flex mx-20'>
+    <div className=' flex justify-center'>
+    <div className='flex flex-wrap justify-center border w-4/5'>
     {
         allCategoryProducts.map(product =>  {
             return (
-                // <Card product={product}/>
-               <Link key={product._id} to={`/product/details/${product._id}`}><Card product={product}/></Link>
+                <div className='m-3'>
+                    <Link key={product._id} to={`/product/details/${product._id}`}><Card product={product}/></Link>
+                </div>
             )
         } )
-
     }
     </div>
-    </>
+    </div>
+    </div>
   )
 }

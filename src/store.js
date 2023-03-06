@@ -4,5 +4,9 @@ import rootReducer from './Reducers/index'
 import { composeWithDevTools } from 'redux-devtools-extension'
 const composedEnhancer = composeWithDevTools(applyMiddleware(thunk))
 
-export const store = createStore(rootReducer, composedEnhancer);
+const initialState = {
+    cart : JSON.parse(localStorage.getItem('cart-items')) || []
+}
+
+export const store = createStore(rootReducer, initialState,composedEnhancer);
 // export store

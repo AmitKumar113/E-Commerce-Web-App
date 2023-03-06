@@ -8,6 +8,8 @@ import ProductDetails from './components/layouts/productDetails/productDetails';
 import CategoryPage from './components/layouts/home/category/categoryPage'
 import AddProduct from './components/layouts/home/products/addProduct';
 import Profile from '../src/components/layouts/component/Profile'
+import CartItems from './components/layouts/cart/cartItems';
+
 import { BrowserRouter as Router, Route,Routes } from "react-router-dom";
 
 function App() {
@@ -22,6 +24,7 @@ function App() {
       <Route exact path="/signup" element={<SelectRole/>} />
       <Route exact path="/login" element={<Login/>} />
       <Route exact path="/profile" element={<Profile/>} />
+      <Route exact path="/cart" element={<CartItems/>} />
       <Route exact path="/Signup/seller" element={<Signup/>} />
       <Route exact path="/Signup/buyer" element={<Signup/>} />
       </Routes>

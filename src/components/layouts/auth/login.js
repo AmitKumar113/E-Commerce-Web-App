@@ -3,6 +3,7 @@ import axios from "axios"
 import './form.css'
 import { getUser } from '../../../Actions/userActions'
 import { useDispatch } from 'react-redux/es/exports'
+import { Link } from 'react-router-dom'
 
 export default function Login({ history }) {
 
@@ -22,22 +23,21 @@ export default function Login({ history }) {
     // history.push("/signup")
     // history.go(-1)
     // window.location.replace(`/electronincs`)
-
   }
 
 
   return (
     <div className='h-[80vh] flex justify-center items-center'>
-      <div className='login-container flex flex-col w-1/3 h-3/4 pt-4 bg-slate-300'>
+      <div className='login-container flex flex-col w-1/4 h-3/4 pt-4 bg-slate-300'>
 
       <span className='text-center text-3xl py-8'>Login</span>
 
-      <form className='login-form flex-box-column' onSubmit={HandleLogin}>
-          <input placeholder='Email' name="email"></input>
+      <form className='flex-box-column [&>*]:w-4/5 [&>*]:h-12 [&>*]:my-1 [&>*]:px-2' onSubmit={HandleLogin}>
+          <input placeholder='Email' name="email" ></input>
           <input placeholder='Password' name="password"></input>
           <button type='submit' className='btn py-4 px-12 bg-green-600 my-8' >Login</button>
+        <p className='px-8 text-sm'>Don't have an account? <Link to='/signup'><span className='underline pl-2'>Signup</span></Link></p>
       </form>
-
       </div>
     </div>
   )

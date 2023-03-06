@@ -1,25 +1,21 @@
 import React from 'react'
-import { useDispatch } from 'react-redux'
-import { useParams } from 'react-router-dom'
-import { addReview } from '../../../Actions/productActions'
+import { useDispatch, useSelector } from 'react-redux'
 import axios from 'axios'
+import { getProduct } from '../../../Actions/productActions'
+import ReviewCard from './reviewCard'
 
 export default function Reviews(props) {
 
-  // const dispatch = useDispatch()
-  // const reviews = props.reviews || []
+  const product = useSelector(state => state.product)
+  const reviews = product.reviews || []
+  const dispatch = useDispatch()
 
   const HandleAddReview = async (e)=>{
-    console.log("HandleAddReview function")
-    console.log(props.id)
     e.preventDefault();
     const rating = document.querySelector('[name="rating"]').value;
-    // const rating = 4
     const comment = document.querySelector('[name="comment"]').value;
-    // const comment = "fabulour";
 
     const authToken =  localStorage.getItem('auth-token')
-    console.log(authToken)
     try{
 
         const config = { headers: {"Content-Type": "application/json","auth-token": authToken}};
@@ -32,40 +28,34 @@ export default function Reviews(props) {
     
             
             console.log(data.product)
+            e.target.reset()
+            dispatch(getProduct(props.id))
     }catch(error){
       console.log({error})
     }
-    // dispatch(addReview({id, rating, comment}))
-    // e.target.reset()
     }
 
 
   return (
     <>
-        <span>write a review</span> 
-    <form className='border-2 border-red-800 flex' onSubmit={HandleAddReview}>
-        <select name='rating'>
+        <span className='text-2xl'>write a review</span> 
+    <form className='border-2 border-red-800 flex h-20 mb-4 [&>*]:h-4/5 items-center' onSubmit={HandleAddReview}>
+        <select name='rating' className='w-12 text-xl text-center ml-4' defaultValue='5'>
           <option>1</option>
           <option>2</option>
           <option>3</option>
           <option>4</option>
           <option>5</option>
         </select>
-        <textarea name="comment" placeholder='write here'></textarea>
-        <button type='submit' className='btn py-4 px-12 bg-green-600' 
-        >
-          Add Review</button>
+        <textarea required name="comment" placeholder='write here' className='items-center flex-1 mx-2 border-2 border-gray-700'></textarea>
+        <button type='submit' className='py-4 px-10 mr-4 bg-green-600'>Add Review</button>
     </form>
-    <div>reviews</div>
+    <div>Reviews</div>
     <div>
       {
         
-       props.reviews.map( review => {
-        return(<div key={review._id}>
-          <div>{review.name}</div>
-          <div>{review.comment}</div>
-        </div>
-        )
+       reviews.map( review => {
+        return( <ReviewCard review={review}></ReviewCard>)
       }
       )}
     </div>
