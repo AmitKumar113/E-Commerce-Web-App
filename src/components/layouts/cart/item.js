@@ -30,7 +30,7 @@ export default function Item(props) {
             <div className='flex-1'>
                 <p className='text-2xl '>{name}</p>
                 <div className='flex'>
-                    <span className='w-1/2 text-lg'>Price: <span className='font-bold text-xl'>${price}</span></span>
+                    <span className='w-1/2 text-lg'>Price: <span className='font-bold text-xl'>₹{price}</span></span>
                     <span className='w-1/2 text-right'>{ratings} ⭐ </span>
                 </div>
             </div>

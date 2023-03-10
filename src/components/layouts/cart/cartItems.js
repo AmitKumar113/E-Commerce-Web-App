@@ -9,10 +9,10 @@ export default function CartItems() {
     return (
         <div className='flex flex-wrap justify-center  '>
             <div className='w-11/12 border-black border-2'>
-                <div className='flex border-2 my-2 [&>*]:mx-2'>
-                    <span className='flex-1 text-right'>cart total</span>
-                    <span>{cart.cartSubTotal}</span>
-                    <div className='bg-cyan-500 cursor-pointer'>order</div>
+                <div className='flex border-2 my-2 '>
+                    <span className='flex-1 text-right text-xl'>Cart Subtotal: ₹</span>
+                    <span className='mr-3 text-2xl'>{cart.cartSubTotal}</span>
+                    <div className='bg-cyan-500 cursor-pointer px-3 py-1 mx-4 rounded-lg text-xl'>Order</div>
                 </div>
                 <span>Items in your cart</span>
                 <div className='flex flex-wrap justify-center'>{

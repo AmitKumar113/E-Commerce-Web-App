@@ -78,13 +78,14 @@ export default function Navbar() {
                 <div id='logout-confirmation'  className='hidden border fixed top-0 left-0 w-screen h-screen'>
                     <div onClick={()=>showPopup()} className='flex justify-center items-center fixed top-0 left-0 w-screen h-screen bg-slate-900 opacity-70 z-1'>
                     </div> 
-                            <div className='bg-white border-2  fixed  border-black w-1/3 h-1/3 z-2 top-1/2 left-1/2 transform translate-x-[-50%] translate-y-[-50%]'>
-                                <div className='text-black text-2xl'>
-                                    are you sure?
+                            <div className='p-4 flex flex-col bg-white border-2  fixed w-1/3 h-1/4 z-2 top-1/2 left-1/2 transform translate-x-[-50%] translate-y-[-50%]'>
+                                <div className='flex-1'>
+                                    <p className='text-2xl my-2'>are you sure?</p>
+                                    <p>Do you want to logout?</p>
                                 </div>
-                                <div>
-                                    <div className='cursor-pointer' onClick={()=>{showPopup(); dispatch(logoutUser) }}>yes</div>
-                                    <div className='cursor-pointer' onClick={()=>showPopup()}>no</div>
+                                <div className='flex [&>*]:px-6 [&>*]:mx-2 [&>*]:py-1 justify-end'>
+                                    <div className='cursor-pointer border' onClick={()=>{showPopup(); dispatch(logoutUser) }}>yes</div>
+                                    <div className='cursor-pointer border' onClick={()=>showPopup()}>no</div>
                                 </div>
                             </div>
                 </div>
