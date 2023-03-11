@@ -5,14 +5,6 @@ import { useDispatch } from 'react-redux'
 import { getProduct } from '../../../../Actions/productActions'
 
 export default function Category(props) {
-  
-  // const dispatch = useDispatch()
-  
-  // const HandleCardClick = (product)=>{
-  //   console.log({product})
-  //   console.log("HandleCardClick")
-  //     dispatch(getProduct(product._id))
-  // }
 
   return (
     <div className='category pb-12'>
@@ -27,7 +19,7 @@ export default function Category(props) {
                 i++;
                 if(i<=6)
                 return (<div key={product._id} className='m-3'>
-                  <Card product={product}/>
+                  <Card product={product || {}}/>
                </div>
              )})
           } 

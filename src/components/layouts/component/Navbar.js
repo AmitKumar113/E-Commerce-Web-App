@@ -28,25 +28,36 @@ export default function Navbar() {
         document.querySelector('#logout-confirmation').classList.toggle('hidden')
     } 
 
+    const HandleBarClick = ()=>{
+       document.querySelector('.menu-nav-ul').classList.toggle('hidden')
+    }
+
   return (
     <header>
         <div className='navbar-container border-green flex-box' >
+            {/* handle bar div - popup navbar for small windows */}
+            <div className='sm:hidden p-2 absolute right-3' onClick={()=>HandleBarClick()}>
+                <div className='bg-black w-4 h-0.5'></div>
+                <div className='bg-black w-4 h-0.5 my-0.5'></div>
+                <div className='bg-black w-4 h-0.5'></div>
+            </div>
             <div className='logo-nav border-red'>
                 LOGO
             </div>
-            <div className='menu-nav'>
-            <ul className='flex-box border-green'>
-                {/* <li className='border-red'>Home</li> */}
-                    <Link to='/'  className='navbar-btn border-red'>Home</Link>
-                    <Link to='/products'  className='navbar-btn border-red'>Products</Link>
-                    <Link to='/about'  className='navbar-btn border-red'>About</Link>
-                    <Link to='/contactus'  className='navbar-btn border-red'>Contact Us</Link>
-            </ul>
-            </div>{user.name!=undefined ? (<div className='flex px-4 cursor-pointer'> 
+            <div className='menu-nav min-sm:fixed'>
+                <ul className='menu-nav-ul  hidden sm:flex justify-center items-center border-[1px] border-green-500'>
+                        <Link to='/'  className='navbar-btn border-red'>Home</Link>
+                        <Link to='/products'  className='navbar-btn border-red'>Products</Link>
+                        <Link to='/about'  className='navbar-btn border-red'>About</Link>
+                        <Link to='/contactus'  className='navbar-btn border-red'>Contact Us</Link>
+                </ul>
+            </div>
+            
+            {user.name!=undefined ? (<div className='hidden sm:flex px-4 cursor-pointer'> 
     
-            <Link to="/cart"><div className='hover:bg-sky-500'><img src={cartIcon} alt="image"></img></div>  </Link> 
-            <div id='profile-name' className='px-4 hover:bg-sky-500' onClick={showProfileToggle}>
-                {user.name}
+            <Link to="/cart"><div className=''><img src={cartIcon} alt="image"></img></div>  </Link> 
+            <div id='profile-name' className='px-4' onClick={showProfileToggle}>
+                {user.name || 'no user'}
             </div>
             </div>
             ) : (
