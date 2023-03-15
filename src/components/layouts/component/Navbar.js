@@ -1,12 +1,13 @@
 import React from 'react'
 import './Navbar.css'
 import '../../../style.css'
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux/es/exports';
 import { logoutUser } from '../../../Actions/userActions';
 import cartIcon from '../../../images/icons/cart-icon.svg'
 import logoutIcon from '../../../images/icons/logout-icon.svg'
 import personIcon from '../../../images/icons/person-icon.svg'
+import icon from '../../../images/large-logo.png'
 
 export default function Navbar() {
 
@@ -28,28 +29,29 @@ export default function Navbar() {
         document.querySelector('#logout-confirmation').classList.toggle('hidden')
     } 
 
-    const HandleBarClick = ()=>{
-       document.querySelector('.menu-nav-ul').classList.toggle('hidden')
-    }
+    // const HandleBarClick = ()=>{
+    //    document.querySelector('.menu-nav-ul').classList.toggle('hidden')
+    // }
 
   return (
     <header>
-        <div className='navbar-container border-green flex-box' >
+        <div className='navbar-container flex-box drop-shadow-[0px_2px_3px_rgba(0,0,0,0.3)] bg-white fixed z-30' >
             {/* handle bar div - popup navbar for small windows */}
-            <div className='sm:hidden p-2 absolute right-3' onClick={()=>HandleBarClick()}>
+            {/* <div className='sm:hidden p-2 absolute right-3' onClick={()=>HandleBarClick()}>
                 <div className='bg-black w-4 h-0.5'></div>
                 <div className='bg-black w-4 h-0.5 my-0.5'></div>
                 <div className='bg-black w-4 h-0.5'></div>
-            </div>
-            <div className='logo-nav border-red'>
-                LOGO
-            </div>
-            <div className='menu-nav min-sm:fixed'>
-                <ul className='menu-nav-ul  hidden sm:flex justify-center items-center border-[1px] border-green-500'>
-                        <Link to='/'  className='navbar-btn border-red'>Home</Link>
-                        <Link to='/products'  className='navbar-btn border-red'>Products</Link>
-                        <Link to='/about'  className='navbar-btn border-red'>About</Link>
-                        <Link to='/contactus'  className='navbar-btn border-red'>Contact Us</Link>
+            </div> */}
+            <Link to='/' >
+            <div className={`logo-nav bg-[url(${icon})] bg-center bg-cover h-14 w-36 cursor-pointer`}></div>
+            </Link>
+            
+            <div className='menu-nav '>
+                <ul className='menu-nav-ul flex justify-center items-center'>
+                        <Link to='/'  className='navbar-btn flex items-center'>Home</Link>
+                        <Link to='/products'  className='navbar-btn flex items-center'>Products</Link>
+                        <Link to='/about'  className='navbar-btn flex items-center'>About</Link>
+                        <Link to='/contactus'  className='navbar-btn flex items-center'>Contact Us</Link>
                 </ul>
             </div>
             
@@ -67,16 +69,16 @@ export default function Navbar() {
                 </div>
             )
             }
-          <div id='popup' className='absolute top-10 right-2 border-2 border-teal-300 hidden w-40 bg-white m-0'>
+          <div id='popup' className='absolute top-10 right-2 hidden w-40 bg-white m-0'>
                 <ul className='text-center cursor-pointer'>
                     <Link to='/profile'>
-                        <li className='hover:bg-blue-400 py-2 flex'>
+                        <li className='hover:bg-blue-400/40 py-2 flex border-b-gray-600/40 border-[1px]'>
                         <span className='w-2/3'>Profile</span>    
                             <div className='w-1/3 text-center'>
                                 <img src={personIcon} alt="image"></img>
                             </div>
                         </li></Link>
-                    <li className='hover:bg-blue-400 py-2 flex' onClick={()=>showPopup()}>
+                    <li className='hover:bg-blue-400/40 py-2 flex' onClick={()=>showPopup()}>
                     {/* <li className='hover:bg-blue-400 py-2 flex' onClick={()=>{dispatch(logoutUser)}}> */}
                             
                             <span className='w-2/3'>log out</span>
@@ -86,10 +88,11 @@ export default function Navbar() {
                     </li>
                 </ul>
             </div> 
-                <div id='logout-confirmation'  className='hidden border fixed top-0 left-0 w-screen h-screen'>
-                    <div onClick={()=>showPopup()} className='flex justify-center items-center fixed top-0 left-0 w-screen h-screen bg-slate-900 opacity-70 z-1'>
+                <div id='logout-confirmation'  className='hidden fixed top-0 left-0 w-screen h-screen'>
+                    <div onClick={()=>showPopup()} className='flex fixed w-screen h-screen bg-slate-900 opacity-70 z-1'>
                     </div> 
-                            <div className='p-4 flex flex-col bg-white border-2  fixed w-1/3 h-1/4 z-2 top-1/2 left-1/2 transform translate-x-[-50%] translate-y-[-50%]'>
+                            {/* <div className='p-4 flex flex-col bg-white border-2  fixed w-1/3 h-1/4 z-2 top-1/2 left-1/2 transform translate-x-[-50%] translate-y-[-50%]'> */}
+                            <div className='p-4 flex flex-col bg-white border-2  fixed w-[500px] h-[200px] z-2 top-[300px] left-1/2 transform translate-x-[-50%] translate-y-[-50%]'>
                                 <div className='flex-1'>
                                     <p className='text-2xl my-2'>are you sure?</p>
                                     <p>Do you want to logout?</p>

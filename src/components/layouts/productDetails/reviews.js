@@ -38,20 +38,27 @@ export default function Reviews(props) {
 
   return (
     <>
-        <span className='text-2xl'>write a review</span> 
-    <form className='border-2 border-red-800 flex h-20 mb-4 [&>*]:h-4/5 items-center' onSubmit={HandleAddReview}>
-        <select name='rating' className='w-12 text-xl text-center ml-4' defaultValue='5'>
-          <option>1</option>
-          <option>2</option>
-          <option>3</option>
-          <option>4</option>
-          <option>5</option>
-        </select>
-        <textarea required name="comment" placeholder='write here' className='items-center flex-1 mx-2 border-2 border-gray-700'></textarea>
-        <button type='submit' className='py-4 px-10 mr-4 bg-green-600'>Add Review</button>
+        <span className='text-2xl'>Write a review</span> 
+    <form className=' flex mb-4  h-52 items-center' onSubmit={HandleAddReview}>
+        <div className='flex flex-col w-[100%] h-full'>
+          <div className='flex h-3/4 items-center'>
+            <select name='rating' className='w-12 h-10 text-xl text-center ml-4' defaultValue='5'>
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+            </select>
+            <textarea required name="comment" placeholder='write here' className='h-[80%] mx-2 flex-1 border-2 border-gray-700'></textarea>
+          </div>
+          <div className='flex justify-end'>
+              <button type='submit' className='py-2 px-6 mx-4 bg-green-600'>Add Review</button>
+          </div>
+        </div>
     </form>
-    <div>Reviews</div>
-    <div>
+    <div className='text-2xl'>Reviews :</div>
+    { reviews==0 ? (<div className='my-4 text-gray-600'>be the first one to rate this product.</div>):(<></>)}
+    <div className='mx-4'>
       {
         
        reviews.map( review => {

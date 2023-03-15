@@ -5,12 +5,20 @@ import { useDispatch, useSelector } from 'react-redux'
 import { store } from '../../../store'
 import { useParams } from 'react-router-dom'
 import Reviews from './reviews'
+import { COLORS } from '../../../constants/productConstant'
+import { addToCart } from '../../../Actions/cartActions'
+
 
 const ProductDetails = () =>{
   
     const { id } = useParams()
     const product = useSelector(state => state.product)
     const dispatch = useDispatch()
+
+    const HandleAddToCart = () => {
+        console.log("first")
+          dispatch(addToCart(product._id))
+      }
     // const [product, setProduct] = useState({});
     // const allProducts = useSelector(state => state.allProducts)
                 // const dispatch = useDispatch()
@@ -27,17 +35,46 @@ const ProductDetails = () =>{
     return (
         <div className='flex justify-center border-green  border-2'>
             <div className='w-4/5'>
-            <div className='details-conatiner border-2 border-black flex m-5 p-3 justify-center min-h-1/3'>
-                <div className='image border-red-300 border-2 w-1/3 h-60'>
-                    image
-                </div>
-                <div className='details border-2 border-black w-2/5 p-3'>
-                    <p className='text-2xl'>{product.name || "no name"}</p>
-                    <p>{product.description || "NO description"}</p>
-                    <p className='text-3xl'>${product.price || "NO description"}</p>
+            <div className='details-conatiner border-[1px] border-black flex m-5 p-3 justify-center min-h-2/3'>
+                {/* ❌ ERROR : when state is not initialised cant accesss image url thats gives error 
+                    solution  - need to initialise the product on starting or even better implement loading*/}
+                {
+                product.Stock ? (
+                    <div className={`bg-[url(${product.image.url})] bg-cover bg-center border-[1px] w-1/3 h-80`}></div>
+                    ):(
+                        <div className={` bg-cover bg-center border-[1px] w-1/3 h-80`}></div>
+                )
+                }
+                
+                <div className='flex flex-col border-[1px] border-black w-2/5 p-3'>
+                    <div className=' flex mb-2'>
+                        <span className='text-2xl flex-1'>{product.name || "no name"}</span>
+                    </div>
+                    <p className='flex-1'>{product.description || "NO description"}</p>
+                    { product.Stock >= 1 ? 
+                        (<span className='border-[1px] w-fit rounded-xl px-4 border-green-700 text-green-700 bg-gray-200/50'>Available</span>):
+                        (<span className='border-[1px] w-fit rounded-xl px-4 border-orange-700 text-orange-700 bg-gray-200/50'>out of stock</span>)
+                    }
+                    <div className='flex mb-4'>
+                        <p className='text-3xl flex-1 my-3'>${product.price || "NO description"}</p>
+                        <div className='flex flex-col'>  
+                        { product.ratings == 0 ? ( <span className=''> No reviews</span>):(
+                            <>
+                            <span className=''> {product.ratings} ⭐</span>
+                            <span className=''> {product.numOfReviews} reviews</span>
+                            </>
+                        )}
+                        </div>
+                    </div>
+                    <div>
+                        <div className=' flex [&>*]:text-center [&>*]:cursor-pointer'>
+                            <div className='w-1/2 mx-2 py-1.5' onClick={()=>{HandleAddToCart()}}>Add to cart</div>
+                            <div className={`w-1/2 mx-2 py-1.5 rounded-lg bg-[${COLORS.MAIN_THEME_COLOR}]`}>Buy Now</div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div className='review-container'>
+            <div className='review-container px-4'>
                 <Reviews id={id} reviews={product.reviews || []}/>
             </div>
         </div>

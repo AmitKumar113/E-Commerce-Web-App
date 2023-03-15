@@ -1,7 +1,7 @@
 import React from 'react'
 import axios from "axios"
 import './form.css'
-import { Link } from 'react-router-dom'
+import { Link, Navigate } from 'react-router-dom'
 
 
 function signup() {
@@ -27,6 +27,7 @@ function signup() {
       console.log({data})
       // history.go(-1)
       window.location.replace(`/login`)
+      // <Navigate to={"/login"}/>
     }
 
 
@@ -34,7 +35,7 @@ function signup() {
     <div className='h-[80vh] flex justify-center items-center'>
       <div className=' flex flex-col w-1/3 h-3/4 pt-4 bg-slate-300'>
       <span className='text-center text-3xl py-6'>Signup</span>
-        <form className='flex-box-column [&>*]:w-4/5 [&>*]:h-12 [&>*]:my-1 [&>*]:px-2'>
+        <form className='flex-box-column [&>*]:w-4/5 [&>*]:h-12 [&>*]:my-1 [&>*]:px-2' onSubmit={handleSubmit}>
             <input placeholder='Full Name' name="name"></input>
             <input placeholder='Email' name="email"></input>
             <input placeholder='Password' name="password"></input>
