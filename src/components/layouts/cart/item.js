@@ -1,11 +1,14 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { updateQuantityOfItem, removeItem } from '../../../Actions/cartActions'
-
+import reactStars from 'react-rating-stars-component'
+import { options } from '../../../constants/productConstant'
+import ReactStars from 'react-rating-stars-component'
 
 export default function Item(props) {
     const dispatch = useDispatch()
     const { id, name, price, ratings, quantity, image_url, Stock } = props.item
+    options.value = ratings
     
     const HandleRemoveItem = ()=>{
             dispatch(removeItem(id))
@@ -32,7 +35,7 @@ export default function Item(props) {
                 <p className='text-2xl '>{name}</p>
                 <div className='flex'>
                     <span className='w-1/2 text-lg'>Price: <span className='font-bold text-xl'>₹{price}</span></span>
-                    <span className='w-1/2 text-right'>{ratings} ⭐ </span>
+                    <span className='w-1/2 text-right'><ReactStars {...options}/> </span>
                 </div>
             </div>
             { Stock >= 1 ? 

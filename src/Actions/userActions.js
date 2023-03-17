@@ -4,7 +4,7 @@ import axios from 'axios'
 export const getUser = (user) => async (dispatch) =>{
     console.log("getUser action")
     const config = { headers: { "Content-Type": "application/json" } };
-    console.log({user})
+    // console.log({user})
     try{
         const { data } = await axios.post(
           `http://localhost:5500/login`,
@@ -20,7 +20,11 @@ export const getUser = (user) => async (dispatch) =>{
         })
         
     } catch(error){
-        console.log({error})
+        // console.log(error.response.data.error)
+        dispatch({
+            type: 'LOGIN_FAIL',
+            payload: error.response.data.message
+        })
     }
     
     // window.push('/')
@@ -59,9 +63,13 @@ export function logoutUser(dispatch){
     localStorage.removeItem('auth-token')
         // return(dispatch => {
             dispatch({
-                type: 'LOGOUT_USER',
-                
+                type: 'LOGOUT_USER'
             })
         // })  
 }
+
+// Clearing Errors
+export const clearErrors = () => async (dispatch) => {
+    dispatch({ type: "CLEAR_ERRORS" });
+  };
 

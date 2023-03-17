@@ -9,6 +9,10 @@ const initialState = {
        cartSubTotal :  JSON.parse(localStorage.getItem('cart-subtotal')) || 0,
        cartItems : JSON.parse(localStorage.getItem('cart-items')) || []
     }
+    // user : {
+    //     isAuthenticated : false,
+    //     user : {}
+    // }
 }
 
 export const store = createStore(rootReducer, initialState,composedEnhancer);

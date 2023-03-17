@@ -7,6 +7,7 @@ import { useParams } from 'react-router-dom'
 import Reviews from './reviews'
 import { COLORS } from '../../../constants/productConstant'
 import { addToCart } from '../../../Actions/cartActions'
+import ReactStars from "react-rating-stars-component";
 
 
 const ProductDetails = () =>{
@@ -14,6 +15,14 @@ const ProductDetails = () =>{
     const { id } = useParams()
     const product = useSelector(state => state.product)
     const dispatch = useDispatch()
+    const options = {
+        edit: false, // false: readonly
+        color: "rgba(20,20,20,0.1)",
+        activeColor: "tomato",
+        size: window.innerWidth < 600 ? 20 : 25,
+        value: product.ratings,
+        isHalf: true, //true: half star
+    }
 
     const HandleAddToCart = () => {
         console.log("first")
@@ -60,7 +69,7 @@ const ProductDetails = () =>{
                         <div className='flex flex-col'>  
                         { product.ratings == 0 ? ( <span className=''> No reviews</span>):(
                             <>
-                            <span className=''> {product.ratings} ⭐</span>
+                            <span className=''><ReactStars {...options} /></span>
                             <span className=''> {product.numOfReviews} reviews</span>
                             </>
                         )}

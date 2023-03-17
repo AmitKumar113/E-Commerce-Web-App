@@ -12,3 +12,12 @@ export const COLORS = {
     THIRD_THEME_COLOR : '#f72585',
     MAIN_HOVER_COLOR : '#ced4da'
 }
+
+export const options = {
+    edit: false, // false: readonly
+    color: "rgba(20,20,20,0.1)",
+    activeColor: "tomato",
+    size: window.innerWidth < 600 ? 20 : 25,
+    value: 0,
+    isHalf: true, //true: half star
+}

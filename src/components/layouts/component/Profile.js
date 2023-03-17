@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux/es/exports'
 
 export default function Profile() {
   
-  const user = useSelector(state => state.user)
+  const { user } = useSelector(state => state.user)
   console.log(user)
 
   return (

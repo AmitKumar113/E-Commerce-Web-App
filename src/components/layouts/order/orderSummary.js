@@ -10,7 +10,7 @@ export default function OrderSummary() {
 
   return (
     <div className='flex-1'>
-        <StepsCount/>
+        <StepsCount op1={80} op2={0} op3={0}/>
         <div>
           <div className='flex flex-wrap justify-center mb-4'>{
                       cart.cartItems.map(item => {

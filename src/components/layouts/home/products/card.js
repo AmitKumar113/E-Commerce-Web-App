@@ -5,7 +5,7 @@ import { Link } from "react-router-dom"
 import { COLORS } from '../../../../constants/productConstant'
 import ReactStars from "react-rating-stars-component";
 import { displayActionMessage } from '../../popups/alert'
-
+ 
 export default function Card(props) {
   // const themeColor = {backgbgColor : 'bg-cyan-500'}
   const dispatch = useDispatch()

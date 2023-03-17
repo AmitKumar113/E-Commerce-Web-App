@@ -8,20 +8,22 @@ import cartIcon from '../../../images/icons/cart-icon.svg'
 import logoutIcon from '../../../images/icons/logout-icon.svg'
 import personIcon from '../../../images/icons/person-icon.svg'
 import icon from '../../../images/large-logo.png'
+import avatar from '../../../images/Profile.png'
 
 export default function Navbar() {
 
-    const user = useSelector(state => state.user)
+    const user = useSelector(state => state.user.user)
     const dispatch = useDispatch()
     document.addEventListener('click',(e)=>{
-        if(e.target.id!='profile-name' && e.target.id!='popup'){
+        if(e.target.id!='user-name'  && e.target.id!='popup'){
             const ele = document.querySelector('.absolute');
             ele.classList.add('hidden')
         }
     })
 
     const showProfileToggle = ()=>{
-        const ele = document.querySelector('.absolute');
+        console.log("showProfileToggle")
+        const ele = document.querySelector('#popup');
         ele.classList.toggle('hidden')
     }
 
@@ -29,19 +31,11 @@ export default function Navbar() {
         document.querySelector('#logout-confirmation').classList.toggle('hidden')
     } 
 
-    // const HandleBarClick = ()=>{
-    //    document.querySelector('.menu-nav-ul').classList.toggle('hidden')
-    // }
+    // document.querySelector('#user-name').addEventListener('click',()=>showProfileToggle)
 
   return (
     <header>
         <div className='navbar-container flex-box drop-shadow-[0px_2px_3px_rgba(0,0,0,0.3)] bg-white fixed z-30' >
-            {/* handle bar div - popup navbar for small windows */}
-            {/* <div className='sm:hidden p-2 absolute right-3' onClick={()=>HandleBarClick()}>
-                <div className='bg-black w-4 h-0.5'></div>
-                <div className='bg-black w-4 h-0.5 my-0.5'></div>
-                <div className='bg-black w-4 h-0.5'></div>
-            </div> */}
             <Link to='/' >
             <div className={`logo-nav bg-[url(${icon})] bg-center bg-cover h-14 w-36 cursor-pointer`}></div>
             </Link>
@@ -55,12 +49,18 @@ export default function Navbar() {
                 </ul>
             </div>
             
-            {user.name!=undefined ? (<div className='hidden sm:flex px-4 cursor-pointer'> 
-    
-            <Link to="/cart"><div className=''><img src={cartIcon} alt="image"></img></div>  </Link> 
-            <div id='profile-name' className='px-4' onClick={showProfileToggle}>
-                {user.name || 'no user'}
-            </div>
+            {user.name!=undefined ? (
+            
+            <div className='flex mx-4'> 
+                <Link to="/cart"><div className='flex items-center h-full'><img src={cartIcon} alt="image"></img></div></Link> 
+                <div id='profile-name' className='mx-4 flex justify-center items-center cursor-pointer' onClick={showProfileToggle}>
+                    <div className='border-[1px] w-8 h-8 rounded-full mr-2 z-0'>
+                        <img src={avatar} ></img>
+                    </div>
+                    <div id='user-name' >
+                        {user.name || 'no user'}
+                    </div>
+                </div>
             </div>
             ) : (
                 <div className='last-nav border-green flex-box' >
@@ -97,9 +97,9 @@ export default function Navbar() {
                                     <p className='text-2xl my-2'>are you sure?</p>
                                     <p>Do you want to logout?</p>
                                 </div>
-                                <div className='flex [&>*]:px-6 [&>*]:mx-2 [&>*]:py-1 justify-end'>
-                                    <div className='cursor-pointer border' onClick={()=>{showPopup(); dispatch(logoutUser) }}>yes</div>
-                                    <div className='cursor-pointer border' onClick={()=>showPopup()}>no</div>
+                                <div className='flex [&>*]:px-6 [&>*]:mx-2 [&>*]:py-1 justify-end [&>*]:rounded-lg'>
+                                    <div className='cursor-pointer border bg-zinc-900 text-white hover:bg-zinc-900/90' onClick={()=>{showPopup(); dispatch(logoutUser) }}>Yes</div>
+                                    <div className='cursor-pointer border hover:bg-slate-600/20' onClick={()=>showPopup()}>No</div>
                                 </div>
                             </div>
                 </div>
