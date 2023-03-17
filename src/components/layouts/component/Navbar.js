@@ -55,7 +55,7 @@ export default function Navbar() {
                 <Link to="/cart"><div className='flex items-center h-full'><img src={cartIcon} alt="image"></img></div></Link> 
                 <div id='profile-name' className='mx-4 flex justify-center items-center cursor-pointer' onClick={showProfileToggle}>
                     <div className='border-[1px] w-8 h-8 rounded-full mr-2 z-0'>
-                        <img src={avatar} ></img>
+                        <img src={user.avatar.url || avatar} ></img>
                     </div>
                     <div id='user-name' >
                         {user.name || 'no user'}

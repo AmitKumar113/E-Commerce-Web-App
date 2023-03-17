@@ -21,3 +21,5 @@ export const options = {
     value: 0,
     isHalf: true, //true: half star
 }
+
+export const AVATAR_MAX_SIZE = 1*1000*1000;
