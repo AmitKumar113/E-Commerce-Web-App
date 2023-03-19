@@ -60,7 +60,7 @@
   color: yellow;
   border: 1px solid yellow;
   padding: 1.6rem;
-  background: yellow;
+  background: rgba(194, 230, 38, 0.719);
 }
 
 .toast-success {

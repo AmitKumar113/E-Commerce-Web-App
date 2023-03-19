@@ -28,7 +28,7 @@ export default function Item(props) {
 
 
     return (
-    <div className='border-[1px] border-black flex m-1 p-2 justify-center w-[45%]'>
+    <div className='border-[1px] border-gray-600/40 flex m-1 p-2 justify-center w-[45%]'>
         <div className={`bg-[url(${image_url})]  bg-center bg-cover border-2 w-2/5 h-60`}></div>
         <div className='flex flex-col  w-3/5 px-4'>
             <div className='flex-1'>

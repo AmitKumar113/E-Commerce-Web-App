@@ -20,8 +20,6 @@ export default function Login() {
 
     // console.log(error)
     dispatch(getUser(user))
-    // if(history.)
-    // console.log({navigate})
     if(!error){
       // if (navigate.length >= 1) 
           navigate(-1)

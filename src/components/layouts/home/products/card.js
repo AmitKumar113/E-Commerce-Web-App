@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { addToCart } from '../../../../Actions/cartActions'
 import { Link } from "react-router-dom"
@@ -9,6 +9,8 @@ import { displayActionMessage } from '../../popups/alert'
 export default function Card(props) {
   // const themeColor = {backgbgColor : 'bg-cyan-500'}
   const dispatch = useDispatch()
+  const { isAuthenticated }= useSelector(state => state.user)
+
   const {_id, name, price, description , ratings, image } = props.product
   const options = {
     edit: false, // false: readonly
@@ -21,13 +23,14 @@ export default function Card(props) {
 
 
   const HandleAddToCart = () => {
-    console.log("first")
+    if(isAuthenticated){
       dispatch(addToCart(_id))
       displayActionMessage("item added to cart", "success")
+    } else displayActionMessage("Login First", "info")
   }
 
   return (
-    <div className='flex flex-col drop-shadow-[4px_4px_2px_rgba(0,0,0,0.4)]  hover:drop-shadow-[5px_5px_4px_rgba(0,0,0,0.4)] bg-white w-72 h-72 p-2'>
+    <div className='flex flex-col drop-shadow-[4px_4px_2px_rgba(0,0,0,0.4)] bg-purple-200/70 hover:drop-shadow-[5px_5px_4px_rgba(0,0,0,0.4)] bg-white w-72 h-72 p-2'>
         <div className=' border-[1px] h-3/5'>
         <Link to={`/product/details/${_id}`}>
             <div className={`bg-[url(${image.url})] w-[100%] h-[100%] bg-center bg-cover `}>

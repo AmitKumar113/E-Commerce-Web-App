@@ -3,23 +3,18 @@ import Category from './category'
 import { CATEGORIES } from '../../../../constants/productConstant';
 import { useSelector } from 'react-redux';
 // import image from '../../../../images/home-image-'
+import Loader from '../../component/Loader/Loader'
 
 export default function Products() {
-  const allProducts = useSelector(state=>state.allProducts);
+  const { allProducts, loading } = useSelector(state=>state.allProducts);
 // console.log({allProducts})
 // console.log(allProducts)
   return (
-
-        
     <div className='flex justify-center'>
 
-
-        {/* { 
-          CATEGORIES.map(category=>{
-            i++;
-          return (
-            <Category key={category} title = {category} categoryProducts = {allProducts[i]}/>
-          ) }) } */}
+    {loading ? (<Loader/>):(
+        
+        
           <div className='w-4/5'>
              <div className="w-full h-[50vh] bg-slate-400 bg-center bg-cover mb-2" >
                 {/* <img src='../../../../images/home-image-small.jpg'></img> */}
@@ -29,7 +24,15 @@ export default function Products() {
             <Category title = {CATEGORIES[2]} categoryProducts = {allProducts[2] || []}/>
             <Category title = {CATEGORIES[3]} categoryProducts = {allProducts[3] || []}/>
             <Category title = {CATEGORIES[4]} categoryProducts = {allProducts[4] || []}/>
-          </div>
+          </div> 
+          )}
     </div>
   )
 }
+
+/* { 
+          CATEGORIES.map(category=>{
+            i++;
+          return (
+            <Category key={category} title = {category} categoryProducts = {allProducts[i]}/>
+       }) } */

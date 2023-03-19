@@ -9,10 +9,12 @@ import logoutIcon from '../../../images/icons/logout-icon.svg'
 import personIcon from '../../../images/icons/person-icon.svg'
 import icon from '../../../images/large-logo.png'
 import avatar from '../../../images/Profile.png'
+import { COLORS } from '../../../constants/productConstant';
 
 export default function Navbar() {
 
     const user = useSelector(state => state.user.user)
+    
     const dispatch = useDispatch()
     document.addEventListener('click',(e)=>{
         if(e.target.id!='user-name'  && e.target.id!='popup'){
@@ -63,9 +65,9 @@ export default function Navbar() {
                 </div>
             </div>
             ) : (
-                <div className='last-nav border-green flex-box' >
-                    <Link to='/login'  className='navbar-btn border-red'>login</Link>
-                    <Link to='/signup'  className='navbar-btn border-red'><li>signup</li></Link>
+                <div className='last-nav flex-box mr-4' >
+                    <Link to='/login'  className='navbar-btn flex items-center'>login</Link>
+                    <Link to='/signup'  className={`navbar-btn flex items-center bg-[${COLORS.THIRD_THEME_COLOR}]`}>signup</Link>
                 </div>
             )
             }

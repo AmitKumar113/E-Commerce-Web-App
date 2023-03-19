@@ -5,6 +5,8 @@ export async function getAllProducts(dispatch){
     console.log('getAllProducts')
     const config = { headers: {"Content-Type": "application/json",}};
 
+    dispatch({ type : 'FETCH_ALL_PRODUCTS_REQUEST' }) 
+
     const { data } =  await axios.get(
           `http://localhost:5500/all-products`,
           config
@@ -21,6 +23,8 @@ export async function getAllProducts(dispatch){
 //in use - ❌for the product details instead of making an api call, searched the allProduct state for that product
 export const getProduct =(productId) => async (dispatch) => {
     const config = { headers: {"Content-Type": "application/json"}};
+
+    dispatch({  type : 'FETCH_PRODUCT_REQUEST'})
 
     const { data } =  await axios.get(
           `http://localhost:5500/product/${productId}`,

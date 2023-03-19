@@ -4,7 +4,7 @@ export default function stepsCount(props) {
 
   // const op = 80;
   return (
-    <div className=''>
+    <div className='mb-2'>
         <div className='flex justify-center items-center [&>*]:border-gray-700/50'>
             <div>
               <div className={`border-2 bg-green-700/${props.op1}  rounded-full w-14 text-center p-2 m-2 text-3xl`}>1</div>

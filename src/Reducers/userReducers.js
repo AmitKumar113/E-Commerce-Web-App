@@ -18,6 +18,7 @@ export const userReducer = (state = { user :{} } , action)=>{
             ...state,
             error : null
         }
+        
         default : return state;
     }
 }

@@ -12,6 +12,7 @@ import CartItems from './components/layouts/cart/cartItems';
 import Footer from './components/layouts/component/Footer';
 import OrderSummary from './components/layouts/order/orderSummary';
 import ShippingDetails from './components/layouts/order/confirmShippingInfo'
+import Payment from './components/layouts/order/Payment'
 // import Alert from './components/layouts/popups/alert';
 import ProtectedRoute from './ProtectedRoute/protectedRoute'
 
@@ -56,13 +57,14 @@ const { isAuthenticated, user } = useSelector(state => state.user)
       <Route exact path="/cart" element={<CartItems/>} />
       <Route exact path="/order/order-summary" element={<OrderSummary/>} />
       <Route exact path="/order/shipping-details" element={<ShippingDetails/>} />
+      <Route exact path="/order/payment" element={<Payment/>} />
       <Route exact path="/Signup/seller" element={<Signup/>} />
       <Route exact path="/Signup/buyer" element={<Signup/>} />
       {/* <Route path='/' element={<Home/>}/> */}
       </Routes>
       {/* <Alert/> */}
-      <Footer/>
       </div>
+      <Footer/>
     </Router>
   )
 }

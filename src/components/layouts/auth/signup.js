@@ -1,20 +1,22 @@
 import React, { useState} from "react";
 import axios from "axios";
 import "./form.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Profile from '../../../images/Profile.png'
 import { AVATAR_MAX_SIZE } from "../../../constants/productConstant";
 
 // import { useState }
 function Signup() {
   const navigate = useNavigate();
+  const location = useLocation()
 
   const [avatar, setAvatar] = useState(Profile)
 
   const registerDataChange = (e) => {
     console.log(e.target.files[0].size)
-
-    if(e.target.files[0].size >= 1000*1000){
+    // console.log(navigate.onload)
+    // console.log(location)
+    if(e.target.files[0].size >=AVATAR_MAX_SIZE){
         document.querySelector('#size-warning').classList.add('text-red-900');
         document.querySelector('#signup-btn').disabled = true;
         document.querySelector('#signup-btn').classList.add('cursor-not-allowed');
@@ -33,32 +35,29 @@ function Signup() {
           setAvatar(reader.result);
         }
       };
-
       reader.readAsDataURL(e.target.files[0]);
     }
+
+
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("form submitted");
 
-    // let user = {
-    //   name: document.querySelector('[name="name"]').value,
-    //   email: document.querySelector('[name="email"]').value.toLowerCase(),
-    //   password: document.querySelector('[name="password"]').value,
-    //   avatar : avatar
-    // };
-
+    let role = location.pathname=='/signup/seller'?'seller':'buyer';
+    
     const myForm = new FormData();
     myForm.append('name', document.querySelector('[name="name"]').value);
     myForm.append('email', document.querySelector('[name="email"]').value);
     myForm.append('password', document.querySelector('[name="password"]').value);
+    // myForm.append('role', role);
     myForm.append('file', avatar);
 
-    const config = { headers: { "Content-Type": "multipart/form-data" } };
+    const config = { headers: { "Content-Type": "multipart/form-data"} };
 
     try{
-        const { data } = await axios.post(
+        await axios.post(
           `http://localhost:5500/signup`,
           myForm,
           config

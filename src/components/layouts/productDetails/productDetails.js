@@ -8,40 +8,36 @@ import Reviews from './reviews'
 import { COLORS } from '../../../constants/productConstant'
 import { addToCart } from '../../../Actions/cartActions'
 import ReactStars from "react-rating-stars-component";
+import { displayActionMessage } from '../popups/alert'
+import Loader from '../../layouts/component/Loader/Loader'
 
 
 const ProductDetails = () =>{
-  
+    // const loading = true;
     const { id } = useParams()
-    const product = useSelector(state => state.product)
+    const { product, loading  } = useSelector(state => state.product)
     const dispatch = useDispatch()
     const options = {
         edit: false, // false: readonly
         color: "rgba(20,20,20,0.1)",
         activeColor: "tomato",
         size: window.innerWidth < 600 ? 20 : 25,
-        value: product.ratings,
+        value: 5,
         isHalf: true, //true: half star
     }
 
     const HandleAddToCart = () => {
-        console.log("first")
           dispatch(addToCart(product._id))
+          displayActionMessage("item added to cart", "success")
       }
-    // const [product, setProduct] = useState({});
-    // const allProducts = useSelector(state => state.allProducts)
-                // const dispatch = useDispatch()
-
-                // console.log("id" + id)
-                // const dispatch = useDispatch()
-                // console.log({product})
     
     useEffect(()=>{
         dispatch(getProduct(id))
-
     },[])
 
     return (
+        <div>
+        { loading ?  ( <Loader/> ):(
         <div className='flex justify-center border-green  border-2'>
             <div className='w-4/5'>
             <div className='details-conatiner border-[1px] border-black flex m-5 p-3 justify-center min-h-2/3'>
@@ -65,7 +61,7 @@ const ProductDetails = () =>{
                         (<span className='border-[1px] w-fit rounded-xl px-4 border-orange-700 text-orange-700 bg-gray-200/50'>out of stock</span>)
                     }
                     <div className='flex mb-4'>
-                        <p className='text-3xl flex-1 my-3'>${product.price || "NO description"}</p>
+                        <p className='text-3xl flex-1 my-3'>₹{product.price || "NO description"}</p>
                         <div className='flex flex-col'>  
                         { product.ratings == 0 ? ( <span className=''> No reviews</span>):(
                             <>
@@ -88,7 +84,8 @@ const ProductDetails = () =>{
             </div>
         </div>
         </div>
-
+    )}
+    </div>
   )
 }
 

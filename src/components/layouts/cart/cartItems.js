@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { COLORS } from '../../../constants/productConstant'
 import Item from './item'
 
 export default function CartItems() {
@@ -13,7 +14,7 @@ export default function CartItems() {
                 <div className='flex border-b-[1px] my-2 py-2'>
                     <span className='flex-1 text-right text-xl'>Cart Subtotal: ₹</span>
                     <span className='mr-3 text-2xl'>{cart.cartSubTotal}</span>
-                    <Link to={'/order/order-summary'}><div className='bg-cyan-500 cursor-pointer px-3 py-1 mx-4 rounded-lg text-xl'>Order</div></Link>
+                    <Link to={'/order/order-summary'}><div className={`bg-[${COLORS.MAIN_THEME_COLOR}] cursor-pointer px-3 py-1 mx-4 text-xl`}>Order</div></Link>
                 </div>
                 <p className='text-xl text-center my-4'>Items in your cart</p>
                 {cart.cartItems.length===0 ? (
