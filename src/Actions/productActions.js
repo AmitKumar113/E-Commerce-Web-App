@@ -25,7 +25,7 @@ export const getProduct =(productId) => async (dispatch) => {
     const config = { headers: {"Content-Type": "application/json"}};
 
     dispatch({  type : 'FETCH_PRODUCT_REQUEST'})
-
+   console.log("first")
     const { data } =  await axios.get(
           `http://localhost:5500/product/${productId}`,
           config

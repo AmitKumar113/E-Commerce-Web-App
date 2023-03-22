@@ -15,7 +15,10 @@ import ShippingDetails from './components/layouts/order/confirmShippingInfo'
 import Payment from './components/layouts/order/Payment'
 // import Alert from './components/layouts/popups/alert';
 import ProtectedRoute from './ProtectedRoute/protectedRoute'
-
+import AddProductBtn from './components/layouts/popups/addProductBtn';
+import Contact from './components/layouts/Contact/Contact'
+import About from './components/layouts/Contact/about'
+import Shop from './components/layouts/component/Shop/shop';
 import { BrowserRouter as Router, Route,Routes,  } from "react-router-dom";
 import { useSelector } from 'react-redux';
  
@@ -34,6 +37,7 @@ const { isAuthenticated, user } = useSelector(state => state.user)
       <Route exact path="/product/:category" element={<CategoryPage/>} />
       
       <Route exact path="/addProduct" element={
+        // <ProtectedRoute isAuthenticated={isAuthenticated} isAdminRoute={true} isAdmin={true}>
         <ProtectedRoute isAuthenticated={isAuthenticated} isAdminRoute={true} isAdmin={user.role=='seller'?true:false}>
           <AddProduct/>
         </ProtectedRoute>
@@ -45,8 +49,14 @@ const { isAuthenticated, user } = useSelector(state => state.user)
       </Route> */}
       
       {/* // can use outlet in sign and login route - if authorised already navigate to home  */}
-      <Route exact path="/signup" element={<SelectRole/>} />
-      <Route exact path="/login" element={<Login/>} />
+      
+      <Route element={<ProtectedRoute isAuthenticated={isAuthenticated}/>}>
+        <Route exact path="/signup" element={<SelectRole/>} />
+        <Route exact path="/Signup/seller" element={<Signup/>} />
+        <Route exact path="/Signup/buyer" element={<Signup/>} />
+      </Route>
+        <Route exact path="/login" element={<Login/>} />
+        <Route exact path="/shop" element={<Shop/>} />
 
 
       <Route exact path="/profile" element={
@@ -58,12 +68,18 @@ const { isAuthenticated, user } = useSelector(state => state.user)
       <Route exact path="/order/order-summary" element={<OrderSummary/>} />
       <Route exact path="/order/shipping-details" element={<ShippingDetails/>} />
       <Route exact path="/order/payment" element={<Payment/>} />
-      <Route exact path="/Signup/seller" element={<Signup/>} />
-      <Route exact path="/Signup/buyer" element={<Signup/>} />
+      <Route exact path="/contactus" element={<Contact/>} />
+      <Route exact path="/about" element={<About/>} />
       {/* <Route path='/' element={<Home/>}/> */}
       </Routes>
       {/* <Alert/> */}
       </div>
+      {
+        // console.log(user)
+        isAuthenticated && user.role=="seller" ? (
+          <AddProductBtn/>
+        ) : (<></>)
+      }
       <Footer/>
     </Router>
   )

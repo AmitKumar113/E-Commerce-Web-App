@@ -5,16 +5,19 @@ export const userReducer = (state = { user :{} } , action)=>{
             isAuthenticated : true,
             user :  action.payload
         }
-        case 'LOGOUT_USER' : return {
+        case 'LOGOUT_USER' : 
+        return {
             isAuthenticated : false,
             user : {}
         };
-        case 'LOGIN_FAIL' : return {
+        case 'LOGIN_FAIL' : 
+        return {
             isAuthenticated : false,
             error : action.payload,
             user : {}
         }
-        case 'CLEAR_ERRORS' : return {
+        case 'CLEAR_ERRORS' : 
+        return {
             ...state,
             error : null
         }

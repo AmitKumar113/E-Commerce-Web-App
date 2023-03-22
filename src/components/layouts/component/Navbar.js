@@ -14,6 +14,7 @@ import { COLORS } from '../../../constants/productConstant';
 export default function Navbar() {
 
     const user = useSelector(state => state.user.user)
+    const isAuthenticated = useSelector(state => state.user.isAuthenticated)
     
     const dispatch = useDispatch()
     document.addEventListener('click',(e)=>{
@@ -45,9 +46,16 @@ export default function Navbar() {
             <div className='menu-nav '>
                 <ul className='menu-nav-ul flex justify-center items-center'>
                         <Link to='/'  className='navbar-btn flex items-center'>Home</Link>
-                        <Link to='/products'  className='navbar-btn flex items-center'>Products</Link>
+                        <Link to='/product/electronics'  className='navbar-btn flex items-center'>Products</Link>
                         <Link to='/about'  className='navbar-btn flex items-center'>About</Link>
                         <Link to='/contactus'  className='navbar-btn flex items-center'>Contact Us</Link>
+                        {
+                            isAuthenticated && user.role=='seller' ? (
+                                <Link to='/shop'  className='navbar-btn flex items-center'>My Shop</Link>
+                            ):(
+                                <></>
+                            )   
+                        }
                 </ul>
             </div>
             
@@ -57,7 +65,13 @@ export default function Navbar() {
                 <Link to="/cart"><div className='flex items-center h-full'><img src={cartIcon} alt="image"></img></div></Link> 
                 <div id='profile-name' className='mx-4 flex justify-center items-center cursor-pointer' onClick={showProfileToggle}>
                     <div className='border-[1px] w-8 h-8 rounded-full mr-2 z-0'>
-                        <img src={user.avatar.url || avatar} ></img>
+                        {
+                        user ? (
+                            <img src={avatar} ></img>
+                        ):(
+                            <img src={user.avatar.url} ></img>
+                        )
+                        }
                     </div>
                     <div id='user-name' >
                         {user.name || 'no user'}

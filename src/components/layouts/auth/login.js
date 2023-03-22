@@ -20,17 +20,19 @@ export default function Login() {
 
     // console.log(error)
     dispatch(getUser(user))
-    if(!error){
-      // if (navigate.length >= 1) 
-          navigate(-1)
-    } 
     
-
     // window.location.href = '/'
     // e.target.reset()
   }
 
-  
+  useEffect(()=>{
+    if(isAuthenticated){
+      // console.log({navigate})
+      if (navigate.length >= 1)
+          navigate(-1)
+      else navigate('/')
+    } 
+  })
 
 
   return (

@@ -7,7 +7,7 @@ import ReviewCard from './reviewCard'
 export default function Reviews(props) {
 
   const product = useSelector(state => state.product)
-  const reviews = product.reviews || []
+  const reviews = product.product.reviews || []
   const dispatch = useDispatch()
 
   const HandleAddReview = async (e)=>{
@@ -62,7 +62,7 @@ export default function Reviews(props) {
       {
         
        reviews.map( review => {
-        return( <ReviewCard review={review}></ReviewCard>)
+        return( <ReviewCard key={review._id} review={review}></ReviewCard>)
       }
       )}
     </div>

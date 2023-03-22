@@ -11,7 +11,7 @@ if(!isAuthenticated)
 if(isAdminRoute && !isAdmin)
     return <Navigate to='/profile'/>
 
-    return children 
+    return children ? children : <Outlet/>
 }
 
 export default ProtectedRoute

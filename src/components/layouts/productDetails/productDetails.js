@@ -15,14 +15,15 @@ import Loader from '../../layouts/component/Loader/Loader'
 const ProductDetails = () =>{
     // const loading = true;
     const { id } = useParams()
-    const { product, loading  } = useSelector(state => state.product)
+    const { product={} , loading=true  } = useSelector(state => state.product)
+    // console.log(product)
     const dispatch = useDispatch()
     const options = {
         edit: false, // false: readonly
         color: "rgba(20,20,20,0.1)",
         activeColor: "tomato",
         size: window.innerWidth < 600 ? 20 : 25,
-        value: 5,
+        value: product.ratings,
         isHalf: true, //true: half star
     }
 
@@ -36,8 +37,8 @@ const ProductDetails = () =>{
     },[])
 
     return (
-        <div>
-        { loading ?  ( <Loader/> ):(
+        <>
+        { loading ?  ( <><Loader/></> ):(
         <div className='flex justify-center border-green  border-2'>
             <div className='w-4/5'>
             <div className='details-conatiner border-[1px] border-black flex m-5 p-3 justify-center min-h-2/3'>
@@ -85,7 +86,7 @@ const ProductDetails = () =>{
         </div>
         </div>
     )}
-    </div>
+    </>
   )
 }
 
