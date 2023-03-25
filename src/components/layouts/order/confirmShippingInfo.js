@@ -79,24 +79,24 @@ export default function ConfirmShippingInfo() {
   useEffect(()=>{
     let shippingInfo = JSON.parse(localStorage.getItem("shipping-info")) || {};
     
-        document.querySelector('[name="address"]').value = shippingInfo.address
-        document.querySelector('[name="city"]').value  = shippingInfo.city
-        document.querySelector('[name="state"]').value = shippingInfo.state
-        document.querySelector('[name="country"]').value = shippingInfo.country
-        document.querySelector('[name="pincode"]').value = shippingInfo.pinCode
-        document.querySelector('[name="phoneNo"]').value = shippingInfo.phoneNo
+        document.querySelector('[name="address"]').value = shippingInfo.address || ''
+        document.querySelector('[name="city"]').value  = shippingInfo.city || ''
+        document.querySelector('[name="state"]').value = shippingInfo.state || ''
+        document.querySelector('[name="country"]').value = shippingInfo.country || ''
+        document.querySelector('[name="pincode"]').value = shippingInfo.pinCode || ''
+        document.querySelector('[name="phoneNo"]').value = shippingInfo.phoneNo || ''
     
   })
 
   return (
     <div>
       <StepsCount op1={80} op2={80} op3={0}/>
-      <div className="text-2xl text-center mt-4 ">Confirm Shipping Details</div>
-      <div className="flex justify-center border">
+      <div className="text-2xl text-center my-4">Confirm Shipping Details</div>
+      <div className="flex justify-center h-[60vh]">
         <form
           onSubmit={(e) => handleProceedBtn(e)}
           onChange={() => changeShppingInfo()}
-          className="flex flex-col w-1/2 border"
+          className="flex flex-col w-1/2 p-4 bg-slate-300 h-full"
         >
           <div className="flex [&>*]:py-3 [&>*]:px-1 [&>*]:flex-1 box-border [&>*]:border-[1px] [&>*]:border-gray-600 m-3">
             <input type="text" name="address" placeholder="Address" className="mr-2" required></input>
@@ -110,7 +110,9 @@ export default function ConfirmShippingInfo() {
             <input type="number" name="pincode" placeholder="Pin code" className="mr-2" required></input>
             <input type="number" name="phoneNo" placeholder="Phone No" required></input>
           </div>
-          <div className="flex h-12 mx-2 my-2 justify-between">
+          <div className=" flex items-end flex-1">
+
+          <div className="flex h-12 mx-2 my-2 justify-between flex-1 ">
             <Link to='/order/order-summary' className="w-1/4">
               <div className="bg-slate-700/40 w-full h-full text-center flex justify-center items-center cursor-pointer">Back</div>
             </Link>
@@ -118,6 +120,7 @@ export default function ConfirmShippingInfo() {
             <button type="submit" className={`bg-[${COLORS.MAIN_THEME_COLOR}] w-1/4 h-full`}>Proceed</button>
             {/* <div className={`bg-[${COLORS.MAIN_THEME_COLOR}] w-full h-full text-center flex justify-center items-center cursor-pointer`}>Proceed</div> */}
             {/* </Link> */}
+          </div>
           </div>
         </form>
       </div>

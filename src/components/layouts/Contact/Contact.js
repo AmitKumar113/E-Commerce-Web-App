@@ -21,10 +21,11 @@ export default class Contact extends Component {
                   displayActionMessage("Email Sent", "success");
           }, (error) => {
               console.log(error.text);
-              displayActionMessage("Offline?", "error");
-          });
-    }catch(error){
-        console.log(error);
+              displayActionMessage("No Internet!", "error");
+            });
+          }catch(error){
+               displayActionMessage("Some error Occured", "error");
+        // console.log(error);
     }
 
       e.target.reset();
@@ -51,7 +52,6 @@ export default class Contact extends Component {
           </div>
 
       </div>
-
     )
   }
 }

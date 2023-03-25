@@ -30,7 +30,7 @@ export default function Login() {
       // console.log({navigate})
       if (navigate.length >= 1)
           navigate(-1)
-      else navigate('/')
+     else navigate('/')
     } 
   })
 

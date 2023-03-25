@@ -4,7 +4,7 @@ import './Footer.css'
 export default function Footer() {
   return (
     <div>
-        <footer class="footer-container mt-6">
+        <footer class="footer-container bg-gradient-to-r from-cyan-500/70 to-blue-500/70 mt-6">
       <div class="useful-links">
           <h3>Useful Links</h3>
           <ul>

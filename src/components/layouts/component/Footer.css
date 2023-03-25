@@ -17,7 +17,7 @@ body{
     /* height: 25vmax; */
     height: fit-content;
     /* background-color: #706e6e; */
-  background: linear-gradient(to right,#ffffff 5%,#4cc9f0cc);
+  /* background: linear-gradient(to right,#ffffff 5%,#4cc9f0cc); */
 
     display: flex;
     justify-content: center;

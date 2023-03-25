@@ -31,7 +31,7 @@ export default function CartItems() {
                 <div className='flex flex-wrap justify-center mb-4'>{
                     cart.cartItems.map(item => {
                         return (
-                            <Item item={item}></Item>
+                            <Item key={item._id}  item={item}></Item>
                             )
                         })
                     }

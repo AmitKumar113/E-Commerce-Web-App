@@ -29,7 +29,7 @@ const ProductDetails = () =>{
 
     const HandleAddToCart = () => {
           dispatch(addToCart(product._id))
-          displayActionMessage("item added to cart", "success")
+        //   displayActionMessage("item added to cart", "success")
       }
     
     useEffect(()=>{
@@ -39,10 +39,10 @@ const ProductDetails = () =>{
     return (
         <>
         { loading ?  ( <><Loader/></> ):(
-        <div className='flex justify-center border-green  border-2'>
+        <div className='flex justify-center'>
             <div className='w-4/5'>
-            <div className='details-conatiner border-[1px] border-black flex m-5 p-3 justify-center min-h-2/3'>
-                {/* ❌ ERROR : when state is not initialised cant accesss image url thats gives error 
+            <div className='details-conatiner bg-slate-300 flex m-5 p-3 justify-center min-h-2/3'>
+                {/* ❌ ERROR-solved : when state is not initialised cant accesss image url thats gives error 
                     solution  - need to initialise the product on starting or even better implement loading*/}
                 {
                 product.Stock ? (
@@ -52,13 +52,13 @@ const ProductDetails = () =>{
                 )
                 }
                 
-                <div className='flex flex-col border-[1px] border-black w-2/5 p-3'>
+                <div className='flex flex-col w-2/5 p-3 bg-white'>
                     <div className=' flex mb-2'>
                         <span className='text-2xl flex-1'>{product.name || "no name"}</span>
                     </div>
                     <p className='flex-1'>{product.description || "NO description"}</p>
                     { product.Stock >= 1 ? 
-                        (<span className='border-[1px] w-fit rounded-xl px-4 border-green-700 text-green-700 bg-gray-200/50'>Available</span>):
+                        (<span className='border-[1px] w-fit rounded-xl px-4 border-green-700 text-green-700 bg-gray-200/50'>In Stock</span>):
                         (<span className='border-[1px] w-fit rounded-xl px-4 border-orange-700 text-orange-700 bg-gray-200/50'>out of stock</span>)
                     }
                     <div className='flex mb-4'>
@@ -73,9 +73,9 @@ const ProductDetails = () =>{
                         </div>
                     </div>
                     <div>
-                        <div className=' flex [&>*]:text-center [&>*]:cursor-pointer'>
-                            <div className='w-1/2 mx-2 py-1.5' onClick={()=>{HandleAddToCart()}}>Add to cart</div>
-                            <div className={`w-1/2 mx-2 py-1.5 rounded-lg bg-[${COLORS.MAIN_THEME_COLOR}]`}>Buy Now</div>
+                        <div className=' flex justify-end  [&>*]:text-center [&>*]:cursor-pointer'>
+                            <div className='w-1/2 py-1.5 bg-green-500/90 hover:bg-green-500/50' onClick={()=>{HandleAddToCart()}}>Add to cart</div>
+                            {/* <div className={`w-1/2 mx-2 py-1.5 rounded-lg bg-[${COLORS.MAIN_THEME_COLOR}]`}>Buy Now</div> */}
                         </div>
                     </div>
                 </div>

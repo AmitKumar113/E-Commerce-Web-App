@@ -4,6 +4,7 @@ import "./form.css";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Profile from '../../../images/Profile.png'
 import { AVATAR_MAX_SIZE } from "../../../constants/productConstant";
+import { displayActionMessage } from "../popups/alert";
 
 // import { useState }
 function Signup() {
@@ -47,7 +48,7 @@ function Signup() {
     
     const myForm = new FormData();
     myForm.append('name', document.querySelector('[name="name"]').value);
-    myForm.append('email', document.querySelector('[name="email"]').value);
+    myForm.append('email', document.querySelector('[name="email"]').value.toLowerCase() );
     myForm.append('password', document.querySelector('[name="password"]').value);
     myForm.append('role', role);
     myForm.append('avatar', avatar);
@@ -60,12 +61,18 @@ function Signup() {
           myForm,
           config
         );
-    } catch(error){
+        displayActionMessage("Signup Successful", "success")
+      } catch(error){
         console.log({error})
+        displayActionMessage("No Internet", "info")
     }
     //can we validate length of input in tag only ?
     // console.log({ data });
-    navigate(-1);
+    
+    if (navigate.length >= 2)
+          navigate(-2)
+     else navigate('/')
+    
   };
 
   return (

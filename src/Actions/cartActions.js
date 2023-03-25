@@ -1,15 +1,39 @@
 import axios from "axios";
+import { displayActionMessage } from "../components/layouts/popups/alert";
 
 export const addToCart = (productId) => async(dispatch) =>{
     console.log("addToCart")
+
     const config = { headers: {"Content-Type": "application/json"}};
+    const cartItems = JSON.parse(localStorage.getItem('cart-items')) || []
+    console.log("cartItems.length"+cartItems.length)
+    let i=0
+    const func = (item)=>{
+        console.log("first")
+        return item.id==productId;
+    }
+    const arr = cartItems.filter(func)
+    
+    if(arr.length>0){
+            displayActionMessage("Added Already!","info")
+         return }
+
+    // for(i=0; i<cartItems.lenth; i++){
+    //     console.log("for----3#######")
+    //     if(cartItems[i].id==productId){
+    //         console.log("if")
+    //         displayActionMessage("Added Already!","info")
+    //         return
+    //     }
+    // }
+
+
+try{
 
     const { data } =  await axios.get(
           `http://localhost:5500/product/${productId}`,
           config
         );
-
-        console.log(data.product)
 
         const item = {
             id : data.product._id,
@@ -22,7 +46,6 @@ export const addToCart = (productId) => async(dispatch) =>{
         }
         
 
-        const cartItems = JSON.parse(localStorage.getItem('cart-items')) || []
         let cartSubTotal = JSON.parse(localStorage.getItem('cart-subtotal')) || 0
         cartItems.push(item);
         cartSubTotal = cartSubTotal + data.product.price;
@@ -33,6 +56,14 @@ export const addToCart = (productId) => async(dispatch) =>{
             type: 'ADD_TO_CART',
             payload : {cartSubTotal, cartItems}
         })
+      displayActionMessage("item added to cart", "success");
+    } catch(error){
+        if(window.navigator.onLine=='off')
+            displayActionMessage("No Internet", "error");
+            else 
+                displayActionMessage("Some Error Occured!", "error");
+    }
+
 }
 
 export const updateQuantityOfItem = ({id, updatedQty}) => async(dispatch) =>{

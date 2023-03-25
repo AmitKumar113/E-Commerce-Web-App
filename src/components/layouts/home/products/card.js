@@ -27,7 +27,7 @@ export default function Card(props) {
   const HandleAddToCart = () => {
     if (isAuthenticated) {
       dispatch(addToCart(_id));
-      displayActionMessage("item added to cart", "success");
+      // displayActionMessage("item added to cart", "success");
     } else displayActionMessage("Login First", "info");
   };
 
@@ -55,20 +55,20 @@ export default function Card(props) {
             </span>
           </div>
         </div>
-        <div className="flex [&>*]:text-center [&>*]:cursor-pointer">
+        <div className="flex justify-end [&>*]:text-center [&>*]:cursor-pointer">
           <div
-            className="w-1/2 mx-2 py-1.5"
+            className="w-1/2 py-1.5  bg-green-500/90 hover:bg-green-500/50"
             onClick={() => {
               HandleAddToCart();
             }}
           >
             Add to cart
           </div>
-          <div className={`w-1/2 mx-2 py-1.5 rounded-lg bg-[${COLORS.MAIN_THEME_COLOR}]`}>
+          {/* <div className={`w-1/2 mx-2 py-1.5 rounded-lg bg-[${COLORS.MAIN_THEME_COLOR}]`}>
             <Link to={`/order/order-summary?id=${_id}`}>
               Buy Now
             </Link>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

@@ -28,6 +28,8 @@ function App() {
 
 const { isAuthenticated, user } = useSelector(state => state.user)
 const dispatch = useDispatch()
+console.log({user})
+if(user)
 dispatch(getSellerProducts(user._id))
 
   return (
@@ -42,7 +44,7 @@ dispatch(getSellerProducts(user._id))
       
       <Route exact path="/addProduct" element={
         // <ProtectedRoute isAuthenticated={isAuthenticated} isAdminRoute={true} isAdmin={true}>
-        <ProtectedRoute isAuthenticated={isAuthenticated} isAdminRoute={true} isAdmin={user.role=='seller'?true:false}>
+        <ProtectedRoute isAuthenticated={isAuthenticated} isAdminRoute={true} isAdmin={user!=null && user.role=='seller'?true:false}>
           <AddProduct/>
         </ProtectedRoute>
       } />
@@ -54,11 +56,12 @@ dispatch(getSellerProducts(user._id))
       
       {/* // can use outlet in sign and login route - if authorised already navigate to home  */}
       
-      <Route element={<ProtectedRoute isAuthenticated={isAuthenticated}/>}>
+      {/* <Route element={<ProtectedRoute isAuthenticated={isAuthenticated}/>}> */}
         <Route exact path="/signup" element={<SelectRole/>} />
         <Route exact path="/Signup/seller" element={<Signup/>} />
         <Route exact path="/Signup/buyer" element={<Signup/>} />
-      </Route>
+      {/* </Route> */}
+       
         <Route exact path="/login" element={<Login/>} />
         <Route exact path="/shop" element={<Shop/>} />
         <Route exact path="/product/:id/edit" element={<EditProduct/>} />

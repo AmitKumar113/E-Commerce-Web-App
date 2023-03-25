@@ -64,14 +64,14 @@ export default function Navbar() {
             <div className='flex mx-4'> 
                 <Link to="/cart"><div className='flex items-center h-full'><img src={cartIcon} alt="image"></img></div></Link> 
                 <div id='profile-name' className='mx-4 flex justify-center items-center cursor-pointer' onClick={showProfileToggle}>
-                    <div className='border-[1px] w-8 h-8 rounded-full mr-2 z-0'>
-                        {
-                        user ? (
+                    <div className={`border-[1px] w-8 h-8 bg-[url(${user==null? avatar: user.avatar.url})] bg-center bg-cover rounded-full mr-2 z-0`}>
+                        {/* {
+                        user==null ? (
                             <img src={avatar} ></img>
                         ):(
                             <img src={user.avatar.url} ></img>
                         )
-                        }
+                        } */}
                     </div>
                     <div id='user-name' >
                         {user.name || 'no user'}
@@ -90,7 +90,7 @@ export default function Navbar() {
                     <Link to='/profile'>
                         <li className='hover:bg-blue-400/40 py-2 flex border-b-gray-600/40 border-[1px]'>
                         <span className='w-2/3'>Profile</span>    
-                            <div className='w-1/3 text-center'>
+                            <div className='w-1/3 text-center '>
                                 <img src={personIcon} alt="image"></img>
                             </div>
                         </li></Link>
