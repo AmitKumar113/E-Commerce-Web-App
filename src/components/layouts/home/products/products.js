@@ -2,11 +2,8 @@ import React, { useEffect } from 'react'
 import Category from './category'
 import { CATEGORIES } from '../../../../constants/productConstant';
 import { useDispatch, useSelector } from 'react-redux';
-// import image from '../../../../images/home-image-'
 import Loader from '../../component/Loader/Loader'
 import { getProduct } from '../../../../Actions/productActions';
-import homeImageSmall from '../../../../images/home-image-small.jpg'
-import homeImageLarge from '../../../../images/home-image-large.jpg'
 import cartPic from '../../../../images/cart-pic.jpg'
 
 export default function Products() {

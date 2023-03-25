@@ -25,14 +25,10 @@ export const getProduct =(productId) => async (dispatch) => {
     const config = { headers: {"Content-Type": "application/json"}};
 
     dispatch({  type : 'FETCH_PRODUCT_REQUEST'})
-   console.log("first")
     const { data } =  await axios.get(
           `http://localhost:5500/product/${productId}`,
           config
         );
-
-        console.log("data")
-        console.log(data.product)
 
            dispatch({
               type : 'FETCH_PRODUCT',
@@ -65,3 +61,24 @@ export const addReview = ({productId, rating, comment}) => async(dispatch)=>{
            })   
         })
 }
+
+//get all products of a seller 
+export const getSellerProducts =(userId) => async (dispatch) => {
+   const config = { headers: {"Content-Type": "application/json", "sellerId" : userId}};
+   console.log({userId})
+   dispatch({  type : 'FETCH_SHOP_PRODUCTS_REQUEST'})
+      console.log("first")
+      const { data } =  await axios.get(
+         `http://localhost:5500/shop`,
+         config
+       );
+
+       console.log("data")
+       console.log(data)
+
+          dispatch({
+             type : 'FETCH_SHOP_PRODUCTS',
+             payload : data.products
+          })   
+
+  }

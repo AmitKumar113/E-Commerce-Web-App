@@ -50,7 +50,7 @@ export default function Payment() {
         config
       );
 
-      displayActionMessage("Ordered Placed", "success")
+      displayActionMessage("Order Placed", "success")
       navigate('/')
     } catch (error) {
       console.log({ error });

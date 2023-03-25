@@ -35,7 +35,7 @@ export default class Contact extends Component {
 
     return (
       <div className={`container-contact flex-container`}>
-          <div className={`image-container-contact flex justify-center bg-[url(${backgroundPic})] bg-cover bg-center`}>
+          <div className={`image-container-contact flex justify-center bg-gradient-to-r from-cyan-500 to-blue-500  bg-cover bg-center`}>
           <div className='form-container border'>
             <h1 className='text-2xl text-white'>Write to us</h1>
               <form className='contact-form' onSubmit={this.sendMail}>

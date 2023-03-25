@@ -6,10 +6,7 @@ import { COLORS } from "../../../../constants/productConstant";
 import ReactStars from "react-rating-stars-component";
 import { displayActionMessage } from "../../popups/alert";
 
-export default function Card(props) {
-  // const themeColor = {backgbgColor : 'bg-cyan-500'}
-
-
+export default function ShopItem(props) {
 
   const dispatch = useDispatch();
   const { isAuthenticated } = useSelector((state) => state.user);
@@ -49,31 +46,26 @@ export default function Card(props) {
             <span className="card-price flex-1">
               Price: ₹{price || "product price"}
             </span>
-            {/* <span className='ml-6'>{ratings || '0'} ⭐</span> */}
             <span>
               <ReactStars {...options} />{" "}
             </span>
           </div>
         </div>
         <div className="flex [&>*]:text-center [&>*]:cursor-pointer">
-          <div
-            className="w-1/2 mx-2 py-1.5"
-            onClick={() => {
-              HandleAddToCart();
-            }}
-          >
-            Add to cart
+          <div className="w-1/2 mx-2">
+          <Link to={`/product/${_id}/edit`}>
+            <div className=" py-1.5 w-full h-full">Edit</div>
+          </Link>
           </div>
-          <div className={`w-1/2 mx-2 py-1.5 rounded-lg bg-[${COLORS.MAIN_THEME_COLOR}]`}>
-            <Link to={`/order/order-summary?id=${_id}`}>
-              Buy Now
-            </Link>
+          
+          <div className={`w-1/2 mx-2 bg-[${COLORS.MAIN_THEME_COLOR}]`}>
+          <Link to={`/product/details/${_id}`}>
+            <div className="py-1.5 w-full h-full">Watch</div>
+          </Link>
           </div>
         </div>
       </div>
     </div>
   );
 }
-{
-  /* <span className='card-description'>{description || 'product description'}</span> */
-}
+

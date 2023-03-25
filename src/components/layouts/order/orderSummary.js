@@ -1,12 +1,25 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import StepsCount from './stepsCount'
 import ItemCard from './itemCard'
-import { Link } from 'react-router-dom'
+import { Link, useSearchParams } from 'react-router-dom'
+import { getProduct } from '../../../Actions/productActions'
 
 export default function OrderSummary() {
   
+  const dispatch = useDispatch()
   const cart = useSelector(state => state.cart)
+  const {product={}, loading=true } = useSelector(state => state.product)
+  const [param, setParam] = useSearchParams()
+  const id = param.get('id')
+
+  // if(id) 
+  // console.log()
+  
+  useEffect(()=>{
+    if(id)
+      dispatch(getProduct(id))
+  },[])
 
   return (
     <div className='flex-1'>

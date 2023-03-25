@@ -20,11 +20,15 @@ import Contact from './components/layouts/Contact/Contact'
 import About from './components/layouts/Contact/about'
 import Shop from './components/layouts/component/Shop/shop';
 import { BrowserRouter as Router, Route,Routes,  } from "react-router-dom";
-import { useSelector } from 'react-redux';
- 
+import { useDispatch, useSelector } from 'react-redux';
+import { getSellerProducts } from './Actions/productActions';
+import EditProduct from './components/layouts/component/Shop/EditProduct'
+
 function App() {
 
 const { isAuthenticated, user } = useSelector(state => state.user)
+const dispatch = useDispatch()
+dispatch(getSellerProducts(user._id))
 
   return (
     <Router>
@@ -57,6 +61,7 @@ const { isAuthenticated, user } = useSelector(state => state.user)
       </Route>
         <Route exact path="/login" element={<Login/>} />
         <Route exact path="/shop" element={<Shop/>} />
+        <Route exact path="/product/:id/edit" element={<EditProduct/>} />
 
 
       <Route exact path="/profile" element={

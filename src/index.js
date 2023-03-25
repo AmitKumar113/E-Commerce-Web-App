@@ -5,8 +5,9 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { store } from './store';
 import { Provider } from 'react-redux';
-import { getAllProducts } from './Actions/productActions'
+import { getAllProducts, getSellerProducts } from './Actions/productActions'
 import { setUserByAuthtoken } from './Actions/userActions'
+// import { getSellerProducts } from ''
 
 store.dispatch(getAllProducts)
 store.dispatch(setUserByAuthtoken)
