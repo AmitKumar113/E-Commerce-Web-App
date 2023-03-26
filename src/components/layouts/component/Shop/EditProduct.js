@@ -6,6 +6,7 @@ import Loader from "../Loader/Loader";
 import { displayActionMessage } from "../../popups/alert";
 import axios from 'axios'
 import { getAllProducts } from "../../../../Actions/productActions";
+import { updateQuantityOfItem } from "../../../../Actions/cartActions";
 
 export default function EditProduct() {
      const navigate = useNavigate()
@@ -17,18 +18,18 @@ export default function EditProduct() {
     const dispatch = useDispatch()
 
     // const [item, setItem] = useState(product)
-    const [item, setItem] = useState({
-      name : product.name,
-      description : product.description,
-      price: product.price,
-      Stock:product.Stock
-    })
+    // const [item, setItem] = useState({
+    //   name : product.name,
+    //   description : product.description,
+    //   price: product.price,
+    //   Stock:product.Stock
+    // })
 
-    let { name, description, price, Stock }  = item;
+    // let { name, description, price, Stock }  = item;
 
-    const handleChange = (e)=>{
-        setItem({...item, [e.target.name]:e.target.value })
-    }
+    // const handleChange = (e)=>{
+    //     setItem({...item, [e.target.name]:e.target.value })
+    // }
 
     const handleSubmitChanges = async (e)=>{
       e.preventDefault()
@@ -41,10 +42,10 @@ export default function EditProduct() {
                        }};
       
       const myForm = new FormData();
-      myForm.append('name', name);
-      myForm.append('description', description);
-      myForm.append('price', price);
-      myForm.append('Stock', Stock);
+      myForm.append('name', document.querySelector('[name="name"]').value);
+      myForm.append('description', document.querySelector('#description').value);
+      myForm.append('price', document.querySelector('[name="price"]').value);
+      myForm.append('Stock', document.querySelector('[name="Stock"]').value);
       // myForm.append('category', category);
       // myForm.append('file', image);
       // console.log({myForm})
@@ -72,22 +73,22 @@ export default function EditProduct() {
     useEffect(()=>{
         console.log({id})
         dispatch(getProduct(id))
-        console.log({product})
-        // if(loading)
-        // console.log(loading)
-        // setItem({
-        //   name : product.name,
-        //   description : product.description,
-        //   price: product.price,
-        //   Stock:product.Stock
+        // console.log({product})
+      // updateFields()
+          
         // })
     }, [id])
 
+    // const updateFields = ()=>{
+    //   console.log("first")
+    //   name = product.name
+    //   description = product.description
+    //   price= product.price
+    //   Stock=product.Stock
+    // }
   return (
     <>
-    {/* { console.log({product}) }
-    { console.log({item}) } */}
-    {/* { setItem(product) } */}
+    {/* {updateFields()} */}
     { loading ? (<Loader/>):(
       <div className=" flex justify-center items-center">
         <div className="login-container flex flex-col w-1/3 py-4 bg-slate-300 my-8 ">
@@ -101,28 +102,32 @@ export default function EditProduct() {
             // onChange={handleChange}
           >
             <input
+              id="name"
               type="text"
               name="name"
               placeholder="Title of product"
               required
-              value={name}
-              onChange={handleChange}
-            ></input>
+              defaultValue={product.name}
+              // value={name}
+              // onChange={handleChange}
+              ></input>
             <input
               type="number"
               name="price"
               placeholder="Selling Price"
               required
-              onChange={handleChange}
-              value={price}
-            ></input>
+              defaultValue={product.price}
+              // onChange={handleChange}
+              // value={price}
+              ></input>
             <input
               type="number"
               name="Stock"
               placeholder="Stock"
-              onChange={handleChange}
               required
-              value={Stock}
+              defaultValue={product.Stock}
+              // onChange={handleChange}
+              // value={Stock}
             ></input>
             {/* <label for="product-image">Product image</label> */}
             {/* <input
@@ -144,11 +149,13 @@ export default function EditProduct() {
               })}
             </select> */}
             <textarea
+              id="description"
               placeholder="Product Desription"
               name="description"
-              onChange={handleChange}
               required
-              value={description}
+              defaultValue={product.description}
+              // onChange={handleChange}
+              // value={description}
             ></textarea>
             <button className="w-full h-full bg-green-600" type="submit">
                Submit Changes

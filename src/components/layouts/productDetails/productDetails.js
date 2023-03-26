@@ -13,7 +13,6 @@ import Loader from '../../layouts/component/Loader/Loader'
 
 
 const ProductDetails = () =>{
-    // const loading = true;
     const { id } = useParams()
     const { product={} , loading=true  } = useSelector(state => state.product)
     // console.log(product)

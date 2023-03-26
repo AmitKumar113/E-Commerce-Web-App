@@ -5,8 +5,6 @@ import './Contact.css'
 import emailjs from 'emailjs-com'
 import Profile from './../../../images/Profile.png'
 import { displayActionMessage } from '../popups/alert'
-import contactimage from './../../../images/contactimage.jpg'
-import backgroundPic from './../../../images/background-pic.jpg'
 
 export default class Contact extends Component {
   

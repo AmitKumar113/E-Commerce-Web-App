@@ -4,6 +4,8 @@ import { updateQuantityOfItem, removeItem } from '../../../Actions/cartActions'
 import reactStars from 'react-rating-stars-component'
 import { options } from '../../../constants/productConstant'
 import ReactStars from 'react-rating-stars-component'
+import { Link } from "react-router-dom";
+
 
 export default function Item(props) {
     const dispatch = useDispatch()
@@ -29,7 +31,9 @@ export default function Item(props) {
 
     return (
     <div className='border-[1px] border-gray-600/40 flex m-1 p-2 justify-center w-[45%]'>
-        <div className={`bg-[url(${image_url})]  bg-center bg-cover border-2 w-2/5 h-60`}></div>
+        <div className={`bg-[url(${image_url})]  bg-center bg-cover border-2 w-2/5 h-60`}>
+            <Link to={`/product/details/${id}`}><div className='w-full h-full'></div></Link>
+        </div>
         <div className='flex flex-col  w-3/5 px-4'>
             <div className='flex-1'>
                 <p className='text-2xl '>{name}</p>
@@ -49,9 +53,9 @@ export default function Item(props) {
                 <span className='py-2 px-4'>{quantity}</span>
                 <button className=' bg-slate-500/40 hover:bg-slate-500 text-3xl' onClick={()=>incQuantity()}>+</button>
             </div>
-            <div className='flex [&>*]:text-center [&>*]:cursor-pointer' >
+            <div className='flex justify-end [&>*]:text-center [&>*]:cursor-pointer' >
                  <div className='w-1/2 py-2 hover:text-red-500 ' onClick={()=>HandleRemoveItem()}> remove</div>
-                 <div className='w-1/2 py-2 bg-cyan-500 rounded-lg'>Buy Now</div>
+                 {/* <div className='w-1/2 py-2 bg-cyan-500 rounded-lg'>Buy Now</div> */}
             </div>
         </div>
     </div>

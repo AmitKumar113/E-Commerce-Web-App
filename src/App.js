@@ -44,7 +44,7 @@ dispatch(getSellerProducts(user._id))
       
       <Route exact path="/addProduct" element={
         // <ProtectedRoute isAuthenticated={isAuthenticated} isAdminRoute={true} isAdmin={true}>
-        <ProtectedRoute isAuthenticated={isAuthenticated} isAdminRoute={true} isAdmin={user!=null && user.role=='seller'?true:false}>
+        <ProtectedRoute isAuthenticated={isAuthenticated} isAdminRoute={true} isAdmin={true}>
           <AddProduct/>
         </ProtectedRoute>
       } />
@@ -84,7 +84,7 @@ dispatch(getSellerProducts(user._id))
       </div>
       {
         // console.log(user)
-        isAuthenticated && user.role=="seller" ? (
+        isAuthenticated==true && user.role=="seller" ? (
           <AddProductBtn/>
         ) : (<></>)
       }
