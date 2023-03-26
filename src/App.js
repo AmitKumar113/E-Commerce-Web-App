@@ -13,7 +13,6 @@ import Footer from './components/layouts/component/Footer';
 import OrderSummary from './components/layouts/order/orderSummary';
 import ShippingDetails from './components/layouts/order/confirmShippingInfo'
 import Payment from './components/layouts/order/Payment'
-// import Alert from './components/layouts/popups/alert';
 import ProtectedRoute from './ProtectedRoute/protectedRoute'
 import AddProductBtn from './components/layouts/popups/addProductBtn';
 import Contact from './components/layouts/Contact/Contact'
