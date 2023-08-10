@@ -15,6 +15,5 @@ Database : MongoDB
 
 ## Preview
 
-
-Uploading shoptank.mp4…
+https://github.com/AmitKumar113/E-Commerce-Web-App/assets/87431788/ea99435b-71fb-4870-ae29-f064ae96ac79
 
